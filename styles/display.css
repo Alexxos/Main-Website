@@ -1,0 +1,26 @@
+/* 
+body {
+background: linear-gradient(to right, #ff9472, #f2709c); 
+color: blue
+}
+
+#h4 {
+  
+    display: inline;
+    height: 200px;
+    width: 200px;
+    border: 2px solid  cyan;
+    padding-bottom: 40px;
+
+}
+
+span {
+    border: 2px solid  cyan;
+    padding: 40px;
+    display: block;
+}
+
+#inline-block {
+color: green;
+display: inline-block ;
+} */

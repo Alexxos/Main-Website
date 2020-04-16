@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Selector</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body>
+    <h1>
+        <center>Css Selectors</center>
+    </h1>
+
+
+
+        <p><a href="https://developer.mozilla.org/fr/docs/Web/CSS/S%C3%A9lecteurs_CSS">Css selectors link</a></p>
+        <ul>
+            <li><strong class="sign">*</strong> The star symbol will target every single element on the page.</li>
+            <li><strong class="sign">#</strong> ID selectors are rigid and don't allow for reuse</li>
+            <li><strong class="sign">.</strong> This is a class selector,you can target multiple elements</li>
+            <li><strong class="sign"> X Y</strong> the descendant selector. When you need to be more specific with your
+                selectors, you use these.</li>
+            <li><strong class="sign">X</strong> target all elements on a page, according to their type</li>
+            <li><strong class="sign">X:visited and X:link</strong> :link pseudo-class to target all anchors tags which
+                have /yet to be clicked on.</li>
+            <li><strong> class="sign"X + Y</strong> It will select only the element that is immediately preceded by the
+                former element. </li>
+            <li><strong class="sign">X > Y</strong> will only select direct children </li>
+            <li><strong class="sign">X ~ Y</strong>any Y elements, as long as they follow a X.</li>
+            <li><strong class="sign">X:hover</strong></li>
+            <li><strong class="sign">X:checked</strong></li>This pseudo class will only target a user interface element
+            that has been checked - like a radio button, or checkbox.
+            <li><strong class="sign">input[type="text"]</strong>selection by attributes</li>
+            <li><strong class="sign">,</strong> the period add more than one selectors .sign, h1{...}</li>
+        </ul>
+        <p class="sign">Pseudo-Classes</p> keywords added to selectors that specifies a special state of the selected
+        elements
+        <ul>
+            <li>active</li>
+            <li>checked</li>
+            <li>first</li>
+            <li>first-child</li>
+            <li>visited</li>
+            <li>hover</li>
+            <li>not()</li>
+            <li>nth-child()</li>
+            <li>nth-of-type()</li>
+        </ul>
+
+        <p class="sign">Pseudo-Elements</p> keywords added to selectors that lets you style a particular part of selected elements
+        <ul>
+            <li>:: after</li>
+            <li>::before</li>
+            <li>::first-letter</li>
+            <li>first-line</li>
+            <li>selection</li>
+        </ul>
+
+        <a href="../index.html" class="gradient"> Home </a>
+        <script src="app.js"></script>
+</body>
+
+</html>
