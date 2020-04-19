@@ -82,9 +82,17 @@ h6::before {
 }
 
 h4 {
-    color: #009900
+    color: #009900;
+    display: inline;
+    border: 2px solid white;
+}
+table {
+    border: 2px solid black
 }
 
+tr:nth-of-type(odd){
+    background-color: rgb(105, 186, 212, 0.5);
+}
 .border {
     background-color: lavender;
     color: blue;
@@ -142,3 +150,4 @@ h4 {
     font-family: Open Sans, sans-serif;
     font-weight: 100;
 }
+
