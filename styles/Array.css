@@ -13,10 +13,10 @@ tr:nth-of-type(odd){
 }
 
 .box {
-    font-size: 50px;
+    font-size: 250px;
     color: white;
     padding: 5px;
-    max-width:25%;
+    max-width:45%;
     max-height:auto;
     transition: transform ease 0.5s;
     overflow: auto;
