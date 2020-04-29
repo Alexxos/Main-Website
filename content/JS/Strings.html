@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/Array.css">
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+      <link rel="stylesheet" href="../../styles/Array.css">
+      <link rel="stylesheet" href="../../styles/atom-light.css">
     <title>Strings</title>
 </head>
 <body>
-    <h1>String</h1>
+    <h1>Strings</h1>
+
+    <pre><code class="hljs javascript">
+      const first = () => {
+          console.log('first');
+          second();
+          console.log('third')
+      };
+
+      const second = () => {
+          setTimeout(() => {
+              console.log('wait 2 seconds')
+          },2000)
+      }
+
+      first();
+
+  </code></pre>
+
+
+
+
     <table class="w3-table-all notranslate">
         <tbody><tr>
           <th style="width:24%">Method</th>
@@ -115,5 +139,8 @@
         </tr>
       </tbody></table>
       <a href="/index.html" class="gradient"> Home </a>
+
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
 </body>
 </html>
