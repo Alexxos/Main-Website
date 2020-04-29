@@ -10,54 +10,32 @@
     <title>Strings</title>
 </head>
 <body>
-    <h1>Strings</h1>
     <h1>Javascript Foundations</h1>
 
-    <h3>Methods here</h3>
-    <pre><code class="hljs javascript">
-        
-
-    </code></pre>
-
-    <ul>
-        <li>String Methods:</li>
-        <li>toUpperCase</li>
-        <li>trim</li>
-        <li>indexOf</li>
-        <li>slice</li>
-        <li>replace</li>
-        <li>toLowerCase</li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-
-
-
-
-    <pre><code class="hljs javascript">
-      const first = () => {
-          console.log('first');
-          second();
-          console.log('third')
-      };
-
-      const second = () => {
-          setTimeout(() => {
-              console.log('wait 2 seconds')
-          },2000)
-      }
-
-      first();
-
-  </code></pre>
-
-
+    <h3>String Methods</h3>
+   <pre><code>
+    Let firstName = 'Ziggy';         
+    firstName.length //5
+    firstName[0] //3
+    firstName.toUppercase() // ZIGGY
+    
+    let greeting = '  YO GROS      '; 
+    greeting.trim() //'Yo Gros'
+    
+    let tvShow = 'CatDog';
+    
+    tvShow.indexOf('cat'); // 0
+    tvShow.indexOf('dog'); // 3
+    tvShow.indexOf('z'); // -1 (not found)
+    
+    let str = 'superman'
+    str.slice(0,5) // super
+    str.slice(5) // man
+    
+    let annoyingLaugh = 'tehehe so funny! tehehe';
+    annoyingLaugh.replace('tehehe', 'haha')
+    /*'haha so funny! tehehe' Note that it only replace the first instance.*/
+   </code></pre>
 
 
     <table class="w3-table-all notranslate">
@@ -166,7 +144,6 @@
           <td>Returns the primitive value of a String object</td>
         </tr>
       </tbody></table>
-      <a href="/index.html" class="gradient"> Home </a>
 
       <h1>Statements</h1>
       <table class="w3-table-all notranslate">
@@ -250,7 +227,7 @@
         <td>Marks a block of statements to be executed while a condition is true</td>
         </tr>
         </tbody></table>
-
+        <a href="/index.html" class="gradient"> Home </a>
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script> 
 </body>
