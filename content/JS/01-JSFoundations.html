@@ -1,234 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/Array.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
-    <title>Strings</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+  <link rel="stylesheet" href="../../styles/Array.css">
+  <link rel="stylesheet" href="../../styles/atom-light.css">
+  <title>Strings</title>
 </head>
+
 <body>
-    <h1>Javascript Foundations</h1>
+  <h1>Javascript Foundations</h1>
+  <h3>Conditionals</h3>
 
-    <h3>String Methods</h3>
-   <pre><code>
-    Let firstName = 'Ziggy';         
-    firstName.length //5
-    firstName[0] //3
-    firstName.toUppercase() // ZIGGY
-    
-    let greeting = '  YO GROS      '; 
-    greeting.trim() //'Yo Gros'
-    
-    let tvShow = 'CatDog';
-    
-    tvShow.indexOf('cat'); // 0
-    tvShow.indexOf('dog'); // 3
-    tvShow.indexOf('z'); // -1 (not found)
-    
-    let str = 'superman'
-    str.slice(0,5) // super
-    str.slice(5) // man
-    
-    let annoyingLaugh = 'tehehe so funny! tehehe';
-    annoyingLaugh.replace('tehehe', 'haha')
-    /*'haha so funny! tehehe' Note that it only replace the first instance.*/
-   </code></pre>
+<pre><code class="language-javascript">
+/* AND && Both side must be true to be true :
+ Often used with conditionnal boolean functions */
+
+If (1 <= 4 && 'a' === 'a';){do something}
+9 > 10 && 9 >=9; //false
+'abc'.length === 3 && 1+1 === 4 //false
+
+// OR || if one is true, the whole thing is true :
+
+1 !== 1 || 10 === 10 //true
+
+let age = 76;
+if(age < 6 || age >= 65) {console.log('You get in for free!')}\
+else { console.log('10 bucks please!')}
+
+// ! NOT return true if expression is false:
+! (0 === 0) // false
+! (4 < 3) // true
+
+// Operator Precedence: ! > && > || You can alter this using parens ()
+
+/* TERNARY OPERATOR
+condition ? expIfTrue: expIfFalse */
 
 
-    <table class="w3-table-all notranslate">
-        <tbody><tr>
-          <th style="width:24%">Method</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td><a href="jsref_charat.asp">charAt()</a></td>
-          <td>Returns the character at the specified index (position)</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_charcodeat.asp">charCodeAt()</a></td>
-          <td>Returns the Unicode of the character at the specified index</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_concat_string.asp">concat()</a></td>
-          <td>Joins two or more strings, and returns a new joined strings</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_endswith.asp">endsWith()</a></td>
-          <td>Checks whether a string ends with specified string/characters</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_fromcharcode.asp">fromCharCode()</a></td>
-          <td>Converts Unicode values to characters</td>
-        </tr>
-          <tr>
-          <td><a href="jsref_includes.asp">includes()</a></td>
-          <td>Checks whether a string contains the specified string/characters</td>
-          </tr>
-        <tr>
-          <td><a href="jsref_indexof.asp">indexOf()</a></td>
-          <td>Returns the position of the first found occurrence of a specified value in a string</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_lastindexof.asp">lastIndexOf()</a></td>
-          <td>Returns the position of the last found occurrence of a specified value in a string</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_localecompare.asp">localeCompare()</a></td>
-          <td>Compares two strings in the current locale</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_match.asp">match()</a></td>
-          <td>Searches a string for a match against a regular expression, and returns the matches</td>
-        </tr>
-          <tr>
-          <td><a href="jsref_repeat.asp">repeat()</a></td>
-          <td>Returns a new string with a specified number of copies of an existing string</td>
-          </tr>
-        <tr>
-          <td><a href="jsref_replace.asp">replace()</a></td>
-          <td>Searches a string for a specified value, or a regular expression, and returns a new string where the specified values are replaced</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_search.asp">search()</a></td>
-          <td>Searches a string for a specified value, or regular expression, and returns the position of the match</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_slice_string.asp">slice()</a></td>
-          <td>Extracts a part of a string and returns a new string</td>
-        </tr>
-          <tr>
-          <td><a href="jsref_split.asp">split()</a></td>
-          <td>Splits a string into an array of substrings</td>
-          </tr>
-        <tr>
-          <td><a href="jsref_startswith.asp">startsWith()</a></td>
-          <td>Checks whether a string begins with specified characters</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_substr.asp">substr()</a></td>
-          <td>Extracts the characters from a string, beginning at a specified start position, and through the specified number of character</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_substring.asp">substring()</a></td>
-          <td>Extracts the characters from a string, between two specified indices</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_tolocalelowercase.asp">toLocaleLowerCase()</a></td>
-          <td>Converts a string to lowercase letters, according to the host's locale</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_tolocaleuppercase.asp">toLocaleUpperCase()</a></td>
-          <td>Converts a string to uppercase letters, according to the host's locale</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_tolowercase.asp">toLowerCase()</a></td>
-          <td>Converts a string to lowercase letters</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_tostring_string.asp">toString()</a></td>
-          <td>Returns the value of a String object</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_touppercase.asp">toUpperCase()</a></td>
-          <td>Converts a string to uppercase letters</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_trim_string.asp">trim()</a></td>
-          <td>Removes whitespace from both ends of a string</td>
-        </tr>
-        <tr>
-          <td><a href="jsref_valueof_string.asp">valueOf()</a></td>
-          <td>Returns the primitive value of a String object</td>
-        </tr>
-      </tbody></table>
+</code></pre>
 
-      <h1>Statements</h1>
-      <table class="w3-table-all notranslate">
-          <tbody><tr>
-            <th style="width:20%">Statement</th>
-            <th>Description</th>
-          </tr>
-          <tr>
+  <h3>Logical Operators</h3>
+<pre><code>
+let rating = -99;
+if(rating === 3){console.log('You are a Superstar!');}
+else if (rating === 2) {console.log('Meet Expectations!')}
+else if (rating === 1){console.log('Need improvement')}
+else {console.log('Invalid Rating!')}
+</code></pre>
+
+  <h3>String Methods</h3>
+  <pre><code>
+Let firstName = 'Ziggy';         
+firstName.length //5
+firstName[0] //3
+firstName.toUppercase() // ZIGGY
+    
+let greeting = '  YO GROS      '; 
+greeting.trim() //'Yo Gros'
+    
+let tvShow = 'CatDog';
+    
+tvShow.indexOf('cat'); // 0
+tvShow.indexOf('dog'); // 3
+tvShow.indexOf('z'); // -1 (not found)
+    
+  let str = 'superman'
+str.slice(0,5) // super
+str.slice(5) // man
+    
+let annoyingLaugh = 'tehehe so funny! tehehe';
+annoyingLaugh.replace('tehehe', 'haha')
+/*'haha so funny! tehehe' Note that it only replace the first instance.*/
+</code></pre>
+<h3>String Methods list</h3>
+
+  <table class="w3-table-all notranslate">
+    <tbody>
+      <tr>
+        <th style="width:24%">Method</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><a href="jsref_charat.asp">charAt()</a></td>
+        <td>Returns the character at the specified index (position)</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_charcodeat.asp">charCodeAt()</a></td>
+        <td>Returns the Unicode of the character at the specified index</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_concat_string.asp">concat()</a></td>
+        <td>Joins two or more strings, and returns a new joined strings</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_endswith.asp">endsWith()</a></td>
+        <td>Checks whether a string ends with specified string/characters</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_fromcharcode.asp">fromCharCode()</a></td>
+        <td>Converts Unicode values to characters</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_includes.asp">includes()</a></td>
+        <td>Checks whether a string contains the specified string/characters</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_indexof.asp">indexOf()</a></td>
+        <td>Returns the position of the first found occurrence of a specified value in a string</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_lastindexof.asp">lastIndexOf()</a></td>
+        <td>Returns the position of the last found occurrence of a specified value in a string</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_localecompare.asp">localeCompare()</a></td>
+        <td>Compares two strings in the current locale</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_match.asp">match()</a></td>
+        <td>Searches a string for a match against a regular expression, and returns the matches</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_repeat.asp">repeat()</a></td>
+        <td>Returns a new string with a specified number of copies of an existing string</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_replace.asp">replace()</a></td>
+        <td>Searches a string for a specified value, or a regular expression, and returns a new string where the
+          specified values are replaced</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_search.asp">search()</a></td>
+        <td>Searches a string for a specified value, or regular expression, and returns the position of the match</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_slice_string.asp">slice()</a></td>
+        <td>Extracts a part of a string and returns a new string</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_split.asp">split()</a></td>
+        <td>Splits a string into an array of substrings</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_startswith.asp">startsWith()</a></td>
+        <td>Checks whether a string begins with specified characters</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_substr.asp">substr()</a></td>
+        <td>Extracts the characters from a string, beginning at a specified start position, and through the specified
+          number of character</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_substring.asp">substring()</a></td>
+        <td>Extracts the characters from a string, between two specified indices</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_tolocalelowercase.asp">toLocaleLowerCase()</a></td>
+        <td>Converts a string to lowercase letters, according to the host's locale</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_tolocaleuppercase.asp">toLocaleUpperCase()</a></td>
+        <td>Converts a string to uppercase letters, according to the host's locale</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_tolowercase.asp">toLowerCase()</a></td>
+        <td>Converts a string to lowercase letters</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_tostring_string.asp">toString()</a></td>
+        <td>Returns the value of a String object</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_touppercase.asp">toUpperCase()</a></td>
+        <td>Converts a string to uppercase letters</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_trim_string.asp">trim()</a></td>
+        <td>Removes whitespace from both ends of a string</td>
+      </tr>
+      <tr>
+        <td><a href="jsref_valueof_string.asp">valueOf()</a></td>
+        <td>Returns the primitive value of a String object</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Javascript Statements</h3>
+  <table class="w3-table-all notranslate">
+    <tbody>
+      <tr>
+        <th style="width:20%">Statement</th>
+        <th>Description</th>
+      </tr>
+      <tr>
         <td><a href="jsref_break.asp">break</a></td>
         <td>Exits a switch or a loop</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td>const</td>
         <td>Declares a variable with a constant value</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_class.asp">class</a></td>
         <td>Declares a class</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_continue.asp">continue</a></td>
-        <td>Breaks one iteration (in the loop) if a specified condition occurs, and 
-        continues with the next iteration in the loop</td>
-        </tr>
-        <tr>
+        <td>Breaks one iteration (in the loop) if a specified condition occurs, and
+          continues with the next iteration in the loop</td>
+      </tr>
+      <tr>
         <td><a href="jsref_debugger.asp">debugger</a></td>
         <td>Stops the execution of JavaScript, and calls (if available) the debugging function</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_dowhile.asp">do ... while</a></td>
-        <td>Executes a block of statements and repeats the block while a condition is 
-        true</td>
-        </tr>
-        <tr>
+        <td>Executes a block of statements and repeats the block while a condition is
+          true</td>
+      </tr>
+      <tr>
         <td><a href="jsref_for.asp">for</a></td>
         <td>Loops through a block of code a number of times</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_forin.asp">for ... in </a> </td>
         <td>Loops through the properties of an object</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_forof.asp">for ... of</a></td>
         <td>Loops through the values of an iterable object</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_function.asp">function</a></td>
         <td>Declares a function</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_if.asp">if ... else ... else if</a></td>
         <td>Marks a block of statements to be executed depending on a condition</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td>let</td>
         <td>Declares a variable inside brackets {} scope</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_return.asp">return</a></td>
         <td>Stops the execution of a function and returns a value from that function</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_switch.asp">switch</a></td>
         <td>Marks a block of statements to be executed depending on different cases</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_throw.asp">throw</a></td>
         <td>Throws (generates) an error</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_try_catch.asp">try ... catch ... finally</a></td>
-        <td>Marks the block of statements to be executed when an error occurs in a try 
-        block, and implements error handling</td>
-        </tr>
-        <tr>
+        <td>Marks the block of statements to be executed when an error occurs in a try
+          block, and implements error handling</td>
+      </tr>
+      <tr>
         <td><a href="jsref_var.asp">var</a></td>
         <td>Declares a variable</td>
-        </tr>
-        <tr>
+      </tr>
+      <tr>
         <td><a href="jsref_while.asp">while</a></td>
         <td>Marks a block of statements to be executed while a condition is true</td>
-        </tr>
-        </tbody></table>
-        <a href="/index.html" class="gradient"> Home </a>
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+      </tr>
+    </tbody>
+  </table>
+  <a href="/index.html" class="gradient"> Home </a>
+  <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
+
 </html>
