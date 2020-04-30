@@ -164,10 +164,12 @@ words.some(word => word[0] === 'z') //false
 words.some(w => w.includes('cake')) // true
 </code></pre>
 
-<h3>Reduce()</h3>
+<h3>reduce()</h3>
 <pre><code class="language-javascript">
 /* Executes a reducer function on each element of the 
    array, resulting in a single value.*/
+   
+//arr.reduce(callback( accumulator, currentValue[, index[, array]] )[, initialValue])
 
 //<strong>Summing an Array:</strong>
 [3, 5, 7, 9, 11].reduce((accumulator, currentValue) => {
@@ -183,12 +185,43 @@ topScore // 96
 const topScore = grades.reduce((max, currVal) =>
   Math.max(max, currVal))
 
-// <strong>Finding Max Val:</strong> 
+// <strong>Initial value</strong>
+[4, 5, 6, 7, 8].reduce((accumulator, currentValue) =>{
+  return accumulator + currentValue; }, 100); // 130
+
+// <strong>Tallying (calculate number of)</strong>
+const fruitBasket = ['banana', 'cherry', 'orange', 'apple',
+'cherry', 'orange', 'apple', 'banana', 'cherry', 'orange', 'fig' ];
+
+const count = fruitBasket.reduce( (tally, fruit) => {
+  tally[fruit] = (tally[fruit] || 0) + 1 ;
+  return tally;
+} , {})
+count; // {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
+
+// <strong>Flatenning an Array</strong>
+const data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+const flat = data.reduce((total, amount) => {
+  return total.concat(amount);
+}, []);
+
+flat // [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 </code></pre>
 
 <h3>sort() part II</h3>
 <pre><code class="language-javascript">
+/* 
+If compareFunc(a,b) returns less than 0 Sort a before b
+If compareFunc(a,b) returns 0 Leave a and b unchanged with 
+respect to each other
+If compareFunc(a,b) returns greater than 0 Sort b before a
+*/
 
+const prices = [400.5, 3000, 99.99, 36, 12]
+prices.sort(); // [12, 3000, 36, 400.5, 99.99];
+prices.sort((a,b) => a -b ) // [12, 36, 99.99, 400, 3000];
+prices.sort((a,b) => b - a) // [3000, 400.5, 99.99, 36, 12]
 </code></pre>
 
 <h3>Full list of Arrays Methods</h3>
