@@ -38,8 +38,10 @@ else { console.log('10 bucks please!')}
 
 /* TERNARY OPERATOR
 condition ? expIfTrue: expIfFalse */
-
-
+let a = 'ok';
+(a === 'ok') ? console.log(a) : console.log('error') // 'ok'
+a = 'nope'; 
+(a === 'ok') ? console.log(a) : console.log('error') // 'error'
 </code></pre>
 
   <h3>Logical Operators</h3>
@@ -53,6 +55,20 @@ else {console.log('Invalid Rating!')}
 
   <h3>Switch</h3>
 <pre><code>
+// The switch has one or more case blocks and an optional default.
+const expr = 'Papayas';
+switch (expr) {
+  case 'Oranges':
+    console.log('Oranges are $0.59 a pound.');
+    break;
+  case 'Mangoes':
+  case 'Papayas':
+    console.log('Mangoes and papayas are $2.79 a pound.');
+    // expected output: "Mangoes and papayas are $2.79 a pound."
+    break;
+  default:
+    console.log('Sorry, we are out of ' + expr + '.');}
+
 
 </code></pre>
 

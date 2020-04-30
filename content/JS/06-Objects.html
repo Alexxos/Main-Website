@@ -18,13 +18,25 @@
 /* Objects are collections of properties. Properties are a key-value pair. Rather than accessing
 data using an index, we use custom keys.*/
 
-const palette = {
-  red: '#eb4d4b',
-  yellow: '#f9ca24',
-  blue: '#30336b'
-}
+const fitBitData = {
+  totalSteps: 302030,
+  totalMiles: 220.6,
+  workoutsThisWeek: '5 out of 7',
+};
 
-palette.red /* #eb4d4b */ palette.yellow // #f9ca24
+//<strong>Returning properties</strong> 
+fitBitData.totalSteps // 302030
+
+// <strong>Updating properties:</strong>
+fitBitData.workoutsThisWeek = '6 of 7';
+fitBitData.totalMiles += 7.5;
+
+//<strong> adding a new property</strong>
+fitBitData.heartStillBeating = true;
+
+
+
+//Values can change
 </code></pre>
 
   <a href="/index.html" class="gradient"> Home </a>
