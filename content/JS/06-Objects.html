@@ -13,10 +13,11 @@
 
 <body>
 
-  <h3>Objects, Methods and This</h3>
+  <h1>Objects, Methods and This</h1>
+  <h3>Objects</h3>
   <pre><code class="language-javascript">
-/* Objects are collections of properties. Properties are a key-value pair. Rather than accessing
-data using an index, we use custom keys.*/
+/* Objects are collections of properties. Properties are a key-value pair.
+Rather than accessing data using an index, we use custom keys.*/
 
 const fitBitData = {
   totalSteps: 302030,
@@ -33,11 +34,69 @@ fitBitData.totalMiles += 7.5;
 
 //<strong> adding a new property</strong>
 fitBitData.heartStillBeating = true;
-
-
-
-//Values can change
 </code></pre>
+
+<h3>Shorthand Properties</h3>
+<pre><code class="language-javascript">
+const review = [4.5, 5.0, 3.44, 2.8];
+const max = Math.max(...reviews);
+const min = Math.min(...reviews);
+const sum = reviews.reduce((sum,r) => sum +r);
+const avg = sum / reviews.length;
+
+// <strong>shorthand properties:</strong> 
+const stats = {min, max, sum, avg}; 
+stats; {min: 2.8, max: 5, sum: 14.6, avg: 4.3}
+</code></pre>
+
+<h3>Computed Properties</h3>
+<pre><code class="language-javascript">
+// We can use a variable as a key in an object literal property!
+const user = 'Jools';
+const userRoles = {[user]: 'Admin'}
+userRoles; {Jools: 'Admin'}
+</code></pre>
+
+<h3>Methods</h3>
+<pre><code class="language-javascript">
+/* We can add functions as properties on objects. 
+We call them <strong>Methods:</strong>*/
+const math = {
+  multiply: function(x,y){ return x * y },
+  divide: function (x,y){return x / y},
+  square: function (x,y){x * x}
+}
+</code></pre>
+
+<h3>Shorthand for Methods</h3>
+<pre><code class="language-javascript">
+const math = {
+  blah: 'hi',
+  add(x,y) {return x + y},
+  multiply(x,y){ return x * y}
+}
+math.add(50,60); // 110
+</code></pre>
+
+<h3>This</h3>
+<pre><code class="language-javascript">
+/* Use the keyword this to access other properties on
+the same object. The value of this depends on the 
+invocation context thefunction it is used in. */
+const person = {
+  first: 'Robert',
+  last: 'Herjavec',
+  fullName(){return `${this.first} ${this.last}` } };
+  person.fullName(); // 'Robert Herjavec'
+  person.last = 'Plant';
+  person.fullName = 'Robert Plant';
+
+  const func = person.fullName;
+  func()/* Undefined undefined 
+  (cuz this point to the windows object) */
+
+</code></pre>
+
 
   <a href="/index.html" class="gradient"> Home </a>
  

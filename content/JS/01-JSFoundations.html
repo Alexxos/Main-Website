@@ -12,8 +12,24 @@
 
 <body>
   <h1>Javascript Foundations</h1>
-  <h3>Conditionals</h3>
+  <h3>Arithmetic operators</h3>
 
+  <pre><code class="language-javascript">
+/* <strong>The exponentiation operator</strong>  returns the result of raising 
+the first operand to the power of the second operand
+The exponentiation operator is right-associative.
+ a ** b ** c is equal to a ** (b ** c). */
+2 ** 3 // 8
+3 ** 2 // 9
+3 ** 2.5 // 15.588457268119896
+10 ** -1 // 0.1
+NaN ** 2 // NaN
+2 ** 3 ** 2 // 512
+(2 ** 3) ** 2 // 64
+
+</code></pre>
+
+<h3>Conditionals</h3>
 <pre><code class="language-javascript">
 /* AND && Both side must be true to be true :
  Often used with conditionnal boolean functions */
@@ -34,14 +50,20 @@ else { console.log('10 bucks please!')}
 ! (0 === 0) // false
 ! (4 < 3) // true
 
-// Operator Precedence: ! > && > || You can alter this using parens ()
+/* <strong>Operator Precedence:</strong>  
+NOT (!) has higher precedence than && and ||
+        && has higher precedence than ||
+        
+! > && > || You can alter this using parens () */
 
-/* TERNARY OPERATOR
+
+/* <strong>TERNARY OPERATOR</strong> 
 condition ? expIfTrue: expIfFalse */
 let a = 'ok';
 (a === 'ok') ? console.log(a) : console.log('error') // 'ok'
 a = 'nope'; 
 (a === 'ok') ? console.log(a) : console.log('error') // 'error'
+
 </code></pre>
 
   <h3>Logical Operators</h3>
@@ -95,6 +117,8 @@ str.slice(5) // man
 let annoyingLaugh = 'tehehe so funny! tehehe';
 annoyingLaugh.replace('tehehe', 'haha')
 /*'haha so funny! tehehe' Note that it only replace the first instance.*/
+
+
 </code></pre>
 <h3>String Methods list</h3>
 
