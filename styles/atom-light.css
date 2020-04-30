@@ -19,6 +19,7 @@ hue-6-2: #c18401
     display: block;
     overflow-x: auto;
     padding: 0.5em;
+    padding-top: 0 !important;
     color: #383a42;
     background: #fafafa;
     border: 1px black solid;

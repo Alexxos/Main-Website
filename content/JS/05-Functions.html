@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+      <link rel="stylesheet" href="../../styles/atom-light.css">
+</head>
+<body>
+    <h1>Functions</h1>
+
+<h3>Function Declaration</h3>
+<pre><code class="hljs javascript">
+function sayHi() { alert('Hello'); }
+</code></pre>
+
+<h3>Lexical Scope - Variable 'visibility</h3>
+<pre><code class="hljs javascript">
+//The location where a variable is defined dictates where we have access to that variable
+let radius = 8;
+if(radius .0){
+    const PI = 3.14; 
+    let circ = 2 * PI * radius; }
+console.log(Radius) // 8
+console.log(PI) // NOT DEFINED
+console.log(circ) // NOT DEFINED
+
+function outer() {
+    let here = 'Black Panther';
+    function inner(){
+        let cryForHelp = `${here}, please save me!`
+        console.log(cryForHelp)} 
+        inner(); }
+outer() // Black Panther, please save me!
+</code></pre>
+
+<h3>Function Expression</h3>
+<pre><code class="hljs javascript">
+const square = function (num) {return num * num;}
+square(7) // 49
+</code></pre>
+
+<h3>Higher order Functions / First Class Functions</h3>
+<h3>1 - Functions as Arguments (Aka Callback Functions)</h3>
+<pre><code class="hljs javascript">
+function callTwice(func){
+    func();
+    func(); }
+function laugh() { console.log('haha')}
+callTwice(laugh); // haha // haha
+
+// Aka Callback functions
+
+let years = [2015, 1965, 1928, 1981, 1998]
+
+function arrayCalc(arr, fn) {
+    let arrRes = [];
+    for (let i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i])) } return arrRes}
+
+function calculateAge(el) {return 2020 - el;}
+function isFullAge(el) {return el >= 18;}
+function maxHeartRate(el){return Math.round(206.9 *el)}
+
+let ages = arrayCalc(years, calculateAge);
+let fullAges = arrayCalc(ages, isFullAge);
+let HeartRate = arrayCalc(ages, maxHeartRate);
+
+console.log(ages) // (5) [5, 55, 92, 39, 22]
+console.log(fullAges) // [false, true, true, true, true];
+console.log(HeartRate) //[204, 170, 145, 181, 192]
+</code></pre>
+
+<h3>2 - Functions returning Functions</h3>
+<pre><code class="hljs javascript">
+function interviewQuestion (job) {
+    if (job === 'designer') {
+        return function(name) {
+            console.log(name+ ' can you please explain what UX is?')}
+    } else if (job === 'teacher') {
+        return function(name) {
+            console.log('what subject do you teach ' + name + ' ?') }}}
+    
+let teacherQuestion = interviewQuestion('teacher');
+teacherQuestion('James');
+
+let designerQuestion = interviewQuestion('designer');
+designerQuestion('Annie');
+</code></pre>
+
+<h3>Hoisting</h3>
+<pre><code class="hljs javascript">
+// Hoisting is a JavaScript mechanism where variables and function declarations 
+//are moved to the top of their scope before code execution.
+// Functions expressions are NOT hoisted.
+</code></pre>
+
+<h3></h3>
+<pre><code class="hljs javascript">
+
+</code></pre>
+
+<h3></h3>
+<pre><code class="hljs javascript">
+
+</code></pre>
+
+
+   
+
+    <a href="/index.html" class="gradient"> Home </a>
+  
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script> 
+</body>
+</body>
+</html>
