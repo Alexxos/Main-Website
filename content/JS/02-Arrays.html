@@ -26,39 +26,159 @@ console.log(colors) // ['green', 'orange', 'blue','purple']
 
 /*You'll often see people use const with arrays.
 Values can change as long as the reference remains the same */
-  </code></pre>
-  <h3>Arrays Methods</h3>
-  <pre><code class="language-javascript">
-// push
+</code></pre>
 
-// pop
+<h3>Arrays Methods</h3>
+<pre><code class="language-javascript">
+/* Built-in methods return values when we call them.
+We can then store them. */
 
-// shift
+// push(): add to end
+let arr = [1,2,3];
+arr.push(4)
+console.log(arr) // [1,2,3,4]
 
-// unshift 
+// pop(): remove from end
+let arr = [1,2,3,4];
+arr.pop() // 4
+console.log(arr) // [1,2,3]
 
-// concat
+// shift(): remove from start
+let arr = [1,2,3];
+arr.shift() //1
+console.log(arr) [2,3]
 
-// includes
+// unshift(): add to start 
+let arr = [2,3];
+arr.unshift(1) //3
+console.log(arr) // [1,2,3]
 
-//indexOf
+// concat(): merge arrays
+let arr = [1,2,3];
+let arr2 = [4,5,6]
+let merged = arr.concat(arr2)
+console.log(merged) // [1,2,3,4,5,6]
 
-// join
+// includes(): Check if an array contains the specified element
+let bibi = ['Alek', 'CuTo', 'Vung Tau'];
+bibi.includes('Alek') // true
 
-// reverse
+//indexOf(): Search the array for an element and returns its position
+let bibi = ['Alek', 'CuTo', 'Vung Tau'];
+bibi.indexOf('CuTo') // 1
 
-// slice
+// join(): Joins all elements of an array into a string
+let num = [1,2,3,4,5];
+num.join() // "1,2,3,4,5"
 
-// splice
+// reverse(): Reverses the order of the elements in an array
+let num = [1,2,3,4,5];
+num.reverse = [5,4,3,2,1]
 
-// sort 
+// sort(): sorts the values as strings in alphabetical and ascending order.
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort(); //["Apple", "Banana", "Mango", "Orange"]
 
-// map
+/* slice(): returns the selected elements in an array, as a new array object.
+   selects the elements starting at the given start argument, and ends at, but does not include, 
+   the given end argument.Note: The original array will not be changed.*/
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1, 3); 
+fruits // ["Banana", "Orange", "Lemon", "Apple", "Mango"]
+citrus // ['Orange', 'Lemon']
+
+/* splice(): adds/removes items to/from an array, and returns the removed item(s).
+   array.splice(index, howmany, item1, ....., itemX) */
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+fruits // ["Banana", "Orange", "Lemon", "Kiwi", "Apple", "Mango"]
+</code></pre>
+
+<h3>Array Callback methods</h3>
+<h3>forEach()</h3>
+<pre><code class="language-javascript">
+/* Accepts a callback function.
+   Calls the function once per element in the array.*/
+
+const nums = [9,8,7,6,5,4,3,2,1];
+nums.forEach(function (n) {console.log(n * n) })
+// 64 49 36 25 16 9 4 1
+nums.forEach(function (el) {
+  if (el % 2 === 0) {console.log(el)} })
+// 8 6 4 2
+
+</code></pre>
+
+<h3>map()</h3>
+<pre><code class="language-javascript">
+/* Creates a new array with the results of calling a
+   callback on every element in the array */
+
+const texts = ['rofl', 'lol', 'omg']
+const caps = texts.map(function (t) {return t.toUpperCase();})
+caps // ["ROFL", "LOL", "OMG"]
+</code></pre>
+
+<h3>find()</h3>
+<pre><code class="language-javascript">
+/* returns the value of the first element in the array
+   that satisfies the provided testing function. */
+
+let movies = ["Mr. Fox", "Mr and Mrs Smith", "Mrs Doubtfire"];
+let movie = movies.find(movie => {return movie.includes('Mrs')});
+//movie // "Mr and Mrs Smith"
+let movie2 = movies.find(m => m.indexOf('Mrs') === 0);
+// movie2 // Mrs Doubtfire
+</code></pre>
+
+<h3>filter()</h3>
+<pre><code class="language-javascript">
+/* Creates a new array with all elements that pass the test 
+   implemented by the provided function. */
+const nums = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+const odds = nums.filter(n => {return n % 2 === 1})
+odds; //[9, 7, 5, 3, 1]
+const smallNums = nums.filter(n => {return n >6})
+smallNums // [9,8,7]
+</code></pre>
+
+<h3>every()</h3>
+<pre><code class="language-javascript">
+/* tests whether all elements in the array pass the
+   provided function. It returns a Boolean value. */
+const words = ['dog', 'dig', 'log', 'bag'];
+words.every(word => {return word.length === 3}); // true
+words.every(word =>  word[0] === 'd') // false
+words.every(w => {
+  let lastLetter = w[w.length -1];
+  return lastLetter === 'g' }) // true
+</code></pre>
+
+<h3>some()</h3>
+<pre><code class="language-javascript">
+/* Similar to every, but returns true if ANY of
+   the array elements pass the test function */
+const words = ['dog', 'dig', 'log', 'bag', 'cupcake'];
+words.some(word => {return word.length > 4}) //true
+words.some(word => word[0] === 'z') //false
+words.some(w => w.includes('cake')) // true
+</code></pre>
+
+<h3>Reduce()</h3>
+<pre><code class="language-javascript">
+/* Executes a reducer function on each element of the array,
+   resulting in a single value.*/
+
 
 
 </code></pre>
 
-  <h3>Arrays Methods</h3>
+<h3>sort() part II</h3>
+<pre><code class="language-javascript">
+
+</code></pre>
+
+<h3>Full list of Arrays Methods</h3>
 
   <table class="w3-table-all notranslate">
     <tbody><tr>

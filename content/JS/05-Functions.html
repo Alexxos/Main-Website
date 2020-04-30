@@ -90,25 +90,45 @@ let designerQuestion = interviewQuestion('designer');
 designerQuestion('Annie');
 </code></pre>
 
+<h3>Arrow Functions</h3>
+<pre><code class="hljs javascript">
+// "syntactically compact alternative"to a regular function expression
+
+const square = (x) => { return x * x}
+const sum = (x,y) => { return x + y}
+
+//optionnal parens with 1 parameter, 
+const sqaure = x => {return  x * x}
+
+// empty parens () if no parameters 
+const singSong = () => {return 'lalala'}
+
+// implicit return. between parens () if more than 1 line:
+const isEven = num => (
+    num % 2 === 0 
+);
+
+//implicit return with one-liner:
+const isEven = num => num % 2 === 0;
+
+// 
+</code></pre>
+
 <h3>Hoisting</h3>
 <pre><code class="hljs javascript">
 // Hoisting is a JavaScript mechanism where variables and function declarations 
 //are moved to the top of their scope before code execution.
 // Functions expressions are NOT hoisted.
 </code></pre>
-
-<h3></h3>
+<h3>Immediatly invoked Functions</h3>
 <pre><code class="hljs javascript">
-
-</code></pre>
-
-<h3></h3>
-<pre><code class="hljs javascript">
-
+(function () {
+    let score = Math.random() * 10;
+    console.log(score);
+    }) ();
 </code></pre>
 
 
-   
 
     <a href="/index.html" class="gradient"> Home </a>
   
