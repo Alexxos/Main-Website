@@ -3,68 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Async & Promises</title>
+    <title>Asynchronous code, callbacks & Promises</title>
     <link rel="stylesheet"
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
       <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/dracula.css">
+      <link rel="stylesheet" href="../../styles/Dom.css">
 </head>
 <body>
-    <h1>Asynchronous code, callbacks & Promises</h1>
-<h3>Colt</h3>
+	<h1>Asynchronous code, callbacks & Promises</h1>
+	<p>When a script calls a function, the interpreter adds it to the
+		call stack and then starts carrying out the function.
+		Any functions that are called by that function are added to
+		the call stack further up, and run where their calls are
+		reached.
+		When the current function is finished, the interpreter takes
+		it off the stack and resumes execution where it left off in
+		the last code listing.</p>
+	<p>JS is single threaded: At any given point in time, that
+single JS thread is running at most one line of JS code </p>
+<p>Browsers come with Web APIs that
+	are able to handle certain tasks in
+	the background (like making
+	requests or setTimeout)
+	The JS call stack recognizes these
+	Web API functions and passes them
+	off to the browser to take care of
+	Once the browser finishes those
+	tasks, they return and are pushed
+	onto the stack as a callback.</p>
+
+<p>A Promise is an object representing
+	the eventual completion or failure
+	of an asynchronous operation</p>
+
+<h3>Colt: Creating Promises</h3>
         <pre><code class="hljs javascript">
-const makeDogPromise = () => {
-    return new Promise((resolve,reject) => {
-    setTimeout(() => {
-        const rand = Math.random();
-        rand < 0.5 ? reject():resolve()
-    },5000) }); }
-
-makeDogPromise()
-.then(() =>{
-    console.log('Yah we win')})
-.catch(() => {
-    console.log('nooo') });
-        </code></pre>
-        <h3>Promise refactoring:</h3>
-<pre><code class="hljs javascript">
-const moveX = (element, amount, delay) => {
-return new Promise((resolve, reject) => {
-	setTimeout(() => {
-		const bodyBoundary = document.body.clientWidth;
-		const elRight = element.getBoundingClientRect().right;
-		const currLeft = element.getBoundingClientRect().left;
-		if (elRight + amount > bodyBoundary) {
-			reject({ bodyBoundary, elRight, amount });
-		}
-		else {
-			element.style.transform = `translateX(${currLeft + amount}px)`;
-			resolve();
-		}
-	}, delay); }); };
-
-const btn = document.querySelector('button');
-moveX(btn, 100, 1000)
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.then(() => moveX(btn, 100, 1000))
-	.catch(({ bodyBoundary, amount, elRight }) => {
-	console.log(`Cannot Move! Body is ${bodyBoundary}px wide`);
-	console.log(`Element is at ${elRight}px, ${amount}px is too large!`); });
+// <strong></strong>		
+const willGetYouADog = new Promise((resolve, reject) => {
+	const rand = Math.random();
+	if (rand < 0.5) {
+		resolve();
+	}else{
+		reject(); } });
+willGetYouADog.then(() => {
+		console.log('YAY WE GOT A DOG!!!!'); });
+willGetYouADog.catch(() => {
+		console.log(':( NO DOG'); });
 </code></pre>
 
+<h3> returning Promises from functions:</h3>	
+<pre><code class="hljs javascript">
+// <strong> returning Promises from functions:</strong>	
+const makeDogPromise = () => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			const rand = Math.random();
+			if (rand < 0.5) {
+				resolve();
+			}
+			else {
+				reject();
+			}
+		}, 5000); });};
+
+makeDogPromise()
+	.then(() => {
+		console.log('YAY WE GOT A DOG!!!!');
+	})
+	.catch(() => {
+		console.log(':( NO DOG'); });
+</code></pre>
+
+<h3>Resolving/Rejecting w/ values</h3>
+<pre><code class="hljs javascript">
+
+//This is a FAKE Http Request Function
+//It takes 1 second to resolve or reject the promise, depending on the url that is passed in
+const fakeRequest = (url) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			const pages = {
+				'/users' : [
+					{ id: 1, username: 'Bilbo' },
+					{ id: 5, username: 'Esmerelda' }
+				],
+				'/about' : 'This is the about page!'
+			};
+			const data = pages[url];
+			if (data) {
+				resolve({ status: 200, data }); //resolve with a value!
+			}
+			else {
+				reject({ status: 404 }); //reject with a value!
+			} }, 1000); }); };
+
+fakeRequest('/users')
+	.then((res) => {
+		console.log('Status Code', res.status);
+		console.log('Data', res.data);
+		console.log('REQUEST WORKED!'); })
+	.catch((res) => {
+		console.log(res.status);
+		console.log('REQUEST FAILED'); });
+
+fakeRequest('/dogs')
+	.then((res) => {
+		console.log('Status Code', res.status);
+		console.log('Data', res.data);
+		console.log('REQUEST WORKED!'); })
+	.catch((res) => {
+		console.log(res.status);
+		console.log('REQUEST FAILED'); });
+</code></pre>
+
+<h3>Chaining promises</h3>
+<pre><code>
+//This is a FAKE Http Request Function
+//It takes 1 second to resolve or reject the promise, depending on the url that is passed in
+const fakeRequest = (url) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			const pages = {
+				'/users'        : [
+					{ id: 1, username: 'Bilbo' },
+					{ id: 5, username: 'Esmerelda' }
+				],
+				'/users/1'      : {
+					id        : 1,
+					username  : 'Bilbo',
+					upvotes   : 360,
+					city      : 'Lisbon',
+					topPostId : 454321
+				},
+				'/users/5'      : {
+					id       : 5,
+					username : 'Esmerelda',
+					upvotes  : 571,
+					city     : 'Honolulu'
+				},
+				'/posts/454321' : {
+					id    : 454321,
+					title :
+						'Ladies & Gentlemen, may I introduce my pet pig, Hamlet'
+				},
+				'/about'        : 'This is the about page!'
+			};
+			const data = pages[url];
+			if (data) {
+				resolve({ status: 200, data }); //resolve with a value!
+			}
+			else {
+				reject({ status: 404 }); //reject with a value!
+			}
+		}, 1000); }); };
+
+fakeRequest('/users')
+	.then((res) => {
+		console.log(res);
+		const id = res.data[0].id;
+		return fakeRequest(`/users/${id}`);
+	})
+	.then((res) => {
+		console.log(res);
+		const postId = res.data.topPostId;
+		return fakeRequest(`/posts/${postId}`);
+	})
+	.then((res) => {
+		console.log(res);
+	})
+	.catch((err) => {
+		console.log('OH NO!', err);
+	});
+
+// ************************************************
+// ATTEMPT 2 (deliberate error to illustrate CATCH)
+// ************************************************
+// fakeRequest('/users')
+// 	.then((res) => {
+// 		console.log(res);
+// 		const id = res.data[0].id;
+// 		return fakeRequest(`/useALSKDJrs/${id}`); //INVALID URL, CATCH WILL RUN!
+// 	})
+// 	.then((res) => {
+// 		console.log(res);
+// 		const postId = res.data.topPostId;
+// 		return fakeRequest(`/posts/${postId}`);
+// 	})
+// 	.then((res) => {
+// 		console.log(res);
+// 	})
+// 	.catch((err) => {
+// 		console.log('OH NO!', err);
+// 	});
+
+</code></pre>
+<h3></h3>
+        <h3>Promise refactoring:</h3>
+<pre><code class="hljs javascript">
+	const moveX = (element, amount, delay) => {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				const bodyBoundary = document.body.clientWidth;
+				const elRight = element.getBoundingClientRect().right;
+				const currLeft = element.getBoundingClientRect().left;
+				if (elRight + amount > bodyBoundary) {
+					reject({ bodyBoundary, elRight, amount });
+				}
+				else {
+					element.style.transform = `translateX(${currLeft + amount}px)`;
+					resolve();
+				}
+			}, delay); }); };
+			
+const btn = document.querySelector('button');
+	moveX(btn, 100, 1000)
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.then(() => moveX(btn, 100, 1000))
+		.catch(({ bodyBoundary, amount, elRight }) => {
+			console.log(`Cannot Move! Body is ${bodyBoundary}px wide`);
+			console.log(`Element is at ${elRight}px, ${amount}px is too large!`);
+		});
+	
+	//This function moves an element "amount" number of pixels after a delay.
+	//If the element will stay on screen, we move the element and call the onSuccess callback function
+	//If the element will move off screen, we do not move the element and instead call the onFailure callback
+	// const moveX = (element, amount, delay, onSuccess, onFailure) => {
+	// 	setTimeout(() => {
+	// 		const bodyBoundary = document.body.clientWidth;
+	// 		const elRight = element.getBoundingClientRect().right;
+	// 		const currLeft = element.getBoundingClientRect().left;
+	// 		if (elRight + amount > bodyBoundary) {
+	// 			onFailure();
+	// 		}
+	// 		else {
+	// 			element.style.transform = `translateX(${currLeft + amount}px)`;
+	// 			onSuccess();
+	// 		}
+	// 	}, delay); };
+	
+	// LOOK AT THIS UGLY MESS!
+	// moveX(
+	// 	btn,
+	// 	300,
+	// 	1000,
+	// 	() => {
+	// 		//success callback
+	// 		moveX(
+	// 			btn,
+	// 			300,
+	// 			1000,
+	// 			() => {
+	// 				//success callback
+	// 				moveX(
+	// 					btn,
+	// 					300,
+	// 					1000,
+	// 					() => {
+	// 						//success callback
+	// 						moveX(
+	// 							btn,
+	// 							300,
+	// 							1000,
+	// 							() => {
+	// 								//success callback
+	// 								moveX(
+	// 									btn,
+	// 									300,
+	// 									1000,
+	// 									() => {
+	// 										//success callback
+	// 										alert('YOU HAVE A WIDE SCREEN!');
+	// 									},
+	// 									() => {
+	// 										//failure callback
+	// 										alert('CANNOT MOVE FURTHER!');
+	// 									}
+	// 								);
+	// 							},
+	// 							() => {
+	// 								//failure callback
+	// 								alert('CANNOT MOVE FURTHER!');
+	// 							}
+	// 						);
+	// 					},
+	// 					() => {
+	// 						//failure callback
+	// 						alert('CANNOT MOVE FURTHER!');
+	// 					}
+	// 				);
+	// 			},
+	// 			() => {
+	// 				//failure callback
+	// 				alert('CANNOT MOVE FURTHER!');
+	// 			}
+	// 		);
+	// 	},
+	// 	() => {
+	// 		//failure callback
+	// 		alert('CANNOT MOVE FURTHER!'); } );
+	
+</code></pre>
+<h3>Jonas</h3>
+    <pre><code>
+ // ES6 : Promises to escape Callback Hell
+       
+// First : Produce Promises: 
+const getIds = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve([523, 884, 234, 875]);
+    }, 1500); });
+
+
+const getRecipe = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout(ID => {
+            const recipe = { title: 'italian pizza', publisher: 'bibi' };
+            resolve(`${ID}: ${recipe.title}`);
+                }, 1500, recID); }); };
+
+const getRelated = publisher => {
+    return new Promise((resolve, reject) => {
+        setTimeout(pub => {
+            const recipe = { title: 'italian pizza', publisher: 'bibi' };
+            resolve(`${pub}: ${recipe.title}`);
+        }, 1500, publisher) }); }
+        
+
+// <strong> .then method</strong> if the promise is fullfiled, 
+// The argument is the result of the fullfield promise.
+// <strong> .then .catch </strong> to consume Promises <strong> (resolved, rejected)</strong>
+
+getIds
+    .then(Ids => {
+        console.log(Ids)
+        return getRecipe(Ids[2]) })
+    .then(recipe => {
+        console.log(recipe)
+        return getRelated('bibi') })
+    .then(recipe => {
+        console.log(recipe) })
+    .catch(error => {
+        console.log('error') })
+
+// ES8: <strong>ASYNC / AWAIT</strong> to facilitate consuming Promises
+
+const getIds = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve([523, 884, 234, 875]);
+    }, 1500); });
+
+// .then methods if the promise is fullfiled. The argument is the result of the fullfield promise
+
+const getRecipe = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout(ID => {
+            const recipe = { title: 'tomato sauce', publisher: 'bibi' };
+            resolve(`${ID}: ${recipe.title}`);
+        }, 1500, recID); }); }
+
+const getRelated = publisher => {
+    return new Promise((resolve, reject) => {
+        setTimeout(pub => {
+            const recipe = { title: 'italian pizza', publisher: 'bibi' };
+            resolve(`${pub}: ${recipe.title}`);
+        }, 1500, publisher) }); }
+
+//The <strong> asycn function</strong> always return a promise:
+
+async function getRecipesAW() {
+                const Ids = await getIds;
+                console.log(Ids) // [523, 884, 234, 875]
+                const recipe = await getRecipe(Ids[2])
+                console.log(recipe); //234: tomato sauce
+
+                const related = await getRelated('bibi');
+                console.log(related); // bibi: italian pizza
+                 return recipe }
+
+// You need to use <strong>.then</strong>  to get a return value
+getRecipesAW().then(result =>{
+console.log(`${result} is the best`) }) //234: tomato sauce is the best
+    </code></pre>
     
      
 
