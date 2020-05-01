@@ -4,29 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The DOM object</title>
-    <link rel="stylesheet" href="../../styles/Array.css">
     <link rel="stylesheet"
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
+      <link rel="stylesheet" href="../../styles/Dom.css">
+
 </head>
 <body>
     <h1>The Document Object</h1>
-    
-<p>When an HTML document is loaded into a web browser, it becomes a document object. The document object is the root node of the HTML document.</p>  
+    <strong></strong>
 
-<div>
-  <img class="box" src="../medias/DOM/01.png" alt="">
-  <img class="box" src="../medias/DOM/02.png" alt="">
-  <img class="box" src="../medias/DOM/03.png" alt="">
-  <img class="box" src="../medias/DOM/04.png" alt="">
-  <img class="box" src="../medias/DOM/05.png" alt="">
-  <img class="box" src="../medias/DOM/06.png" alt="">
-  <img class="box" src="../medias/DOM/07.png" alt="">
-  <img class="box" src="../medias/DOM/08.png" alt="">
-  <img class="box" src="../medias/DOM/09.png" alt="">
-  <img class="box" src="../medias/DOM/10.png" alt="">
-  <img class="box" src="../medias/DOM/11.png" alt="">
-</div>
+<p><strong>The DOM </strong>is a JavaScript representation of a webpage. 
+  It's your JS "window" into the contents of a webpage
+  It's just a bunch of objects that you can interact with via JS.</p>
+  <h3><strong>SELECTING : </strong></h3>  
+    <ul>
+      <li>getElementById</li>
+      <li>getElementsByTagName</li>
+      <li>getElementsByClassName</li>
+      <li>querySelector</li>
+      <li>querySelectorAll</li>
+    </ul> 
+    <pre><code class="language-javascript">
+// find first h1 element:
+document.querySelector('h1');
+
+//finds first element with ID of red:
+document.querySelector('#red');
+
+//finds first element of class of 
+document.querySelector('.big')
+
+//find all h3 elements:
+document.querySelectorAll("h3")
+      </code></pre>
+<h3><strong>Manipulating</strong></h3> 
+<p><strong>Important properties and methods:</strong></p>
+<ul>
+  <li>classList</li>
+  <li>getAttribute()</li>
+  <li>
+    setAttribute()</li>
+  <li>appendChild()</li>
+  <li>append()</li>
+  <li>prepend()</li>
+  <li>removeChild()</li>
+  <li>remove()</li>
+  <li>createElement</li>
+  <li>innerText</li>
+  <li>textContent</li>
+  <li>innerHTML</li>
+  <li>value</li>
+  <li>parentElement</li>
+  <li>children</li>
+  <li>nextSibling</li>
+  <li>previousSibling</li>
+  <li>style</li>
+  <li>getComputedStyle()</li>
+</ul>
+
+<p><strong>Events: Responding to user inputs and actions</strong></p>
+<ul>
+  <li>clicks</li>
+  <li>drags</li>
+  <li>drops</li>
+  <li>hovers</li>
+  <li>scrolls</li>
+  <li>form submission</li>
+  <li>key presses</li>
+  <li>focus/blur</li>
+  <li>mouse wheel</li>
+  <li>double click</li>
+  <li>copying</li>
+  <li>pasting</li>
+  <li>audio start</li>
+  <li>screen resize</li>
+</ul>
+
+<p> <strong>addEventListener</strong> Specify the event type and a callback to run</p>
+<pre><code class="language-javascript">
+const button = document.querySelector('h1');
+button.addEventListener('click', () => { alert('You clicked me!')})
+  </code></pre>
+
+  <pre><code class="language-javascript">
+const allLis = document.querySelectorAll('li');
+
+const h1 = document.querySelector('h1');
+h1.style.color = 'orchid'
+
+const colors = ['red', 'blue', 'green'];
+
+const changeColors = () =>  allLis.forEach((li,i) =>{
+    const color = colors[i];
+    li.style.color = color
+})
+
+changeColors();
+
+const li = document.querySelector('li');
+const styles = getComputedStyle(li);
+const todo = document.querySelector('.todo');
+todo.classList.toggle('done');
+
+const newH2 = document.createElement('h2');
+newH2.classList.add('special')
+newH2.innerText= "Chibre" 
+const section = document.querySelector('section');
+section.appendChild(newH2);
+
+const newImg = document.createElement('img');
+newImg.src = "https://something.jpg";
+newImg.style.width ="300px";
+document.body.appendChild(newImg)
+
+const newLink = document.createElement('a');
+newLink.innerText = "   YOOOHOOO click me";
+newLink.href = "https://www.google.com";
+
+const firstP = document.querySelector('p');
+firstP.appendChild(newLink);
+
+const parentUL = document.querySelector('ul');
+const newLI =  document.createElement('li');
+newLI.innerText="I am a new LI";
+parentUL.appendChild(newLI)
+
+const firstLI = document.querySelector('li.todo')
+parentUL.insertBefore(newLI, firstLI)
+  </code></pre>
+
+
+
+
+
+
 
 <p> The following properties and methods can be used on HTML documents:</p>  
     <table class="w3-table-all notranslate">

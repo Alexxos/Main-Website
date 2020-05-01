@@ -8,6 +8,7 @@
     <link rel="stylesheet"
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
       <link rel="stylesheet" href="../../styles/atom-light.css">
+      <link rel="stylesheet" href="../../styles/dracula.css">
 </head>
 </head>
 <body>
@@ -25,7 +26,7 @@ function multiply(a, b = 1) {return a * b;} // multiply(4) return 4
     </code></pre>
     <h3>Spread operator</h3>
 <pre><code class="hljs javascript">
-/* Spread  for Function calls 
+/* <strong>Spread  for Function calls </strong> 
 Expands an iterable (array, string, etc.) into list of arguments: */
 function addFourAges (a,b,c,d) { return a + b + c + d  }
 const ages = [18, 20, 30, 24];
@@ -36,7 +37,7 @@ const nums = [9, 2, 5, 7];
 Math.max(num); // NaN
 Math.max(...nums); // 9   
 
-/* Spread in Array Litterals: 
+/* <strong>Spread in Array Litterals: </strong>  
 Create a new array using an existing array. Spreads the elements from one array into a new array. */
 
 let num1 = [1, 2, 3,];
@@ -46,8 +47,8 @@ let num3;
 [...num1, 'a', 'b', ...num2]; //[1, 2, 3, 'a', 'b', 4, 5, 6];
 num3 = [...num1] // num3.push(4) = [1, 2, 3, 4]
 
-/* Spread in Object Litterals
-Copies properties from on object into another Object literal*/
+/* <strong>Spread in Object Litterals</strong> 
+Copies properties from on object into another Object literal */
 
 const feline = { legs:4, Family:'Felidae' };
 const canine = { family: 'Caninae', furry:true };
@@ -76,7 +77,7 @@ isFullAge(16, 1990,2018,1900) // true, false, true;
 /*A short, clean syntax to 'unpack': Values from arrays, Properties from objects, 
 into distinct variable. */
 
-// Destructuring Arrays :
+// <strong>Destructuring Arrays :</strong> 
 const raceResults = ['Eli Kipchoge', 'Feyisa Lelisa', 'Galen Rupp'];
 const [gold, silver,bronze] = raceResults;
 gold; /* 'Eli Kipchoge' */ silver; /* 'Feyisa Lelisa' */ bronze; // 'Galen Rupp'
@@ -87,7 +88,7 @@ fastest; /*'Eli Kipchoge'*/ everyoneElse // ['Feyisa Lelisa', 'Galen Rupp']
 let [nickName1, nickName2] = ['Momo', 'weshwesh'];
 console.log(nickName1, nickName2) // MoMo weshwesh
 
-// Destructuring Objects : 
+// <strong>Destructuring Objects : </strong> 
 const personalInformation = {
 firstName: 'Alek',
 lastName: 'CuTo',
@@ -101,27 +102,7 @@ console.log(`${fn} ${ln}`); // Alek CuTo
 const fullName = ({first, last}) => {return `${first} ${last}`}
 const runner = { first: 'Eli', last: 'Kipchoge', country: 'Kenya' };
 fullName(runner); // Eli Kipchoge
-
 </code></pre>
-    
-    <img class="box" src="/medias/ES6/01.png" alt="">
-    <img class="box" src="/medias/ES6/02.png" alt="">
-    <img class="box" src="/medias/ES6/03.png" alt="">
-    <img class="box" src="/medias/ES6/04.png" alt="">
-    <img class="box" src="/medias/ES6/05.png" alt="">
-    <img class="box" src="/medias/ES6/06.png" alt="">
-    <img class="box" src="/medias/ES6/07.png" alt="">
-    <img class="box" src="/medias/ES6/08.png" alt="">
-    <img class="box" src="/medias/ES6/09.png" alt="">
-    <img class="box" src="/medias/ES6/10.png" alt="">
-    <img class="box" src="/medias/ES6/11.png" alt="">
-    <img class="box" src="/medias/ES6/12.png" alt="">
-    <img class="box" src="/medias/ES6/13.png" alt="">
-    <img class="box" src="/medias/ES6/14.png" alt="">
-    <img class="box" src="/medias/ES6/15.png" alt="">
-    <img class="box" src="/medias/ES6/16.png" alt="">
-    <img class="box" src="/medias/ES6/17.png" alt="">
-   
     </div>
     <a href="/index.html" class="gradient"> Home </a>
 
