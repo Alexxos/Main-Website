@@ -94,13 +94,11 @@ const allLis = document.querySelectorAll('li');
 
 // One option, a regular for loop:
 for (let i = 0; i < allLis.length; i++) {
-  allLis[i].innerText = 'WE ARE THE CHAMPIONS!'
-}
+  allLis[i].innerText = 'WE ARE THE CHAMPIONS!' }
 
 //Another option using for...of:
 for (let li of allLis) {
-  li.innerHTML = 'WE ARE <b>THE CHAMPIONS</b>'
-}
+  li.innerHTML = 'WE ARE <b>THE CHAMPIONS</b>' }
 </code></pre>
 
 <p> <strong>Changing Style </strong> </p>
@@ -117,8 +115,7 @@ for (let li of allLis) {
   
   allLis.forEach((li, i) => {
     const color = colors[i];
-    li.style.color = color;
-  })
+    li.style.color = color; })
 </code></pre>
 
 <p> <strong>getComputedStyle() </strong> </p>
@@ -136,6 +133,7 @@ for (let li of allLis) {
   compStyles.color; //"rgb(128, 0, 128)"  (purple as an RGB color)
   compStyles.fontSize; //"60
 </code></pre>
+
 <p> <strong>Manipulating Class </strong> </p>
 <pre><code  class="language-javascript">
   const todo = document.querySelector('#todos .todo');
@@ -235,8 +233,7 @@ const colors = ['red', 'blue', 'green'];
 
 const changeColors = () =>  allLis.forEach((li,i) =>{
     const color = colors[i];
-    li.style.color = color
-})
+    li.style.color = color})
 
 changeColors();
 
