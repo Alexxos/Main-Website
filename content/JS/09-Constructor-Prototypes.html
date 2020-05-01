@@ -7,25 +7,81 @@
     <link rel="stylesheet"
       href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
       <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/dracula.css">
+      <link rel="stylesheet" href="../../styles/Dom.css">
 </head>
 <body>
-    <h1>Constructor & Prototypes</h1>
+    <h1>Constructor, Prototypes & Object.create</h1>
 
         <pre><code class="hljs javascript">
            
-            code here(){a*b}
-        </code></pre>
-    
+var john = {
+    name: 'John',
+    yearOfBirth: 1990,
+    job: 'teacher' };
 
+// <strong>Function contructor :</strong> 
+function Person (name, yearOfBirth,job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job; }
 
+//  <strong>adding method to the constructor with the prototype :</strong>
+Person.prototype.calculateAge = 
+function(){
+    console.log (2020 - this.yearOfBirth) }
 
+// [uncommon] <strong>adding property to the prototype :</strong>
+Person.prototype.lastName = 'smith';
 
+// The <strong><em>new</em></strong>  operator create a new object :
+const James = new Person('James', 1990, 'teacher');
+const Jane = new Person ('Jane', 1950, 'retiree');
 
+James.calculateAge();
+Jane.calculateAge();
+console.log(James.lastName, Jane.lastName) 
+//30 70 smith smith
 
+// Is James created by the constructor? 
+console.log (James instanceof Person) // True
 
+//String.prototype is a "template object" for every single string.
+//We could go crazy and add our own method called yell...
+String.prototype.yell = function() {
+	return `OMG!!! ${this.toUpperCase()}!!!!! AGHGHGHG!`;
+};
 
-     
+'bees'.yell(); //"OMG!!! BEES!!!!! AGHGHGHG!"
+
+//We can overwrite an existing Array method like pop (not a good idea):
+Array.prototype.pop = function() {
+	return 'SORRY I WANT THAT ELEMENT, I WILL NEVER POP IT OFF!';
+};
+const nums = [ 6, 7, 8, 9 ];
+nums.pop(); // "SORRY I WANT THAT ELEMENT, I WILL NEVER POP IT OFF!"
+</code></pre>
+
+<h3>Object.create</h3>
+<pre><code class="hljs javascript">
+// <strong>The Object.create()</strong>  method creates a new object, 
+// using an existing object as the prototype 
+// of the newly created object.
+
+const personProto = {
+    calculateAge: function(){
+        console.log(2020 - (this.yearOfBirth)) } }
+
+let Joe = Object.create(personProto);
+Joe.name = 'Joe';
+Joe.yearOfBirth = 1890;
+Joe.job = 'fireman'
+
+let Tao = Object.create(personProto, {
+    name: {value: 'Tao'},
+    yearOfBirth : {value: 1997},
+    job: {value: 'Yoga teacher'} });
+</code></pre>
+  
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script> 
 </body>
