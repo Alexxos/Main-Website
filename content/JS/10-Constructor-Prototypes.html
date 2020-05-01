@@ -10,8 +10,8 @@
       <link rel="stylesheet" href="../../styles/Dom.css">
 </head>
 <body>
-    <h1>Constructor, Prototypes & Object.create</h1>
-
+    <h1>Constructor & Prototypes </h1>
+<h3>(Jonas)</h3>
         <pre><code class="hljs javascript">
            
 var john = {
@@ -44,44 +44,59 @@ console.log(James.lastName, Jane.lastName)
 
 // Is James created by the constructor? 
 console.log (James instanceof Person) // True
-
-//String.prototype is a "template object" for every single string.
+</code></pre>
+<h3>(Colt)</h3>
+<pre><code>
+/String.prototype is a "template object" for every single string.
 //We could go crazy and add our own method called yell...
 String.prototype.yell = function() {
-	return `OMG!!! ${this.toUpperCase()}!!!!! AGHGHGHG!`;
-};
+	return `OMG!!! ${this.toUpperCase()}!!!!! AGHGHGHG!`; };
 
 'bees'.yell(); //"OMG!!! BEES!!!!! AGHGHGHG!"
 
 //We can overwrite an existing Array method like pop (not a good idea):
 Array.prototype.pop = function() {
-	return 'SORRY I WANT THAT ELEMENT, I WILL NEVER POP IT OFF!';
-};
+	return 'SORRY I WANT THAT ELEMENT, I WILL NEVER POP IT OFF!'; };
 const nums = [ 6, 7, 8, 9 ];
 nums.pop(); // "SORRY I WANT THAT ELEMENT, I WILL NEVER POP IT OFF!"
-</code></pre>
 
-<h3>Object.create</h3>
-<pre><code class="hljs javascript">
-// <strong>The Object.create()</strong>  method creates a new object, 
-// using an existing object as the prototype 
-// of the newly created object.
+// This is a Constructor Function...
+function Color(r, g, b) {
+	this.r = r;
+	this.g = g;
+	this.b = b; }
 
-const personProto = {
-    calculateAge: function(){
-        console.log(2020 - (this.yearOfBirth)) } }
+//If you call it on its own like a regular function...
+Color(35, 60, 190); //undefined
+//It returns undefined. Seems useless!
 
-let Joe = Object.create(personProto);
-Joe.name = 'Joe';
-Joe.yearOfBirth = 1890;
-Joe.job = 'fireman'
+// *****************
+// THE NEW OPERATOR!
+// *****************
 
-let Tao = Object.create(personProto, {
-    name: {value: 'Tao'},
-    yearOfBirth : {value: 1997},
-    job: {value: 'Yoga teacher'} });
-</code></pre>
-  
+// 1. Creates a blank, plain JavaScript object;
+// 2. Links (sets the constructor of) this object to another object;
+// 3. Passes the newly created object from Step 1 as the this context;
+// 4. Returns this if the function doesn't return its own object.
+
+Color.prototype.rgb = function() {
+	const { r, g, b } = this;
+	return `rgb(${r}, ${g}, ${b})`; };
+
+Color.prototype.hex = function() {
+	const { r, g, b } = this;
+	return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1); };
+
+Color.prototype.rgba = function(a = 1.0) {
+	const { r, g, b } = this;
+	return `rgba(${r}, ${g}, ${b}, ${a})`; };
+
+const color1 = new Color(40, 255, 60);
+color1.hex();
+const color2 = new Color(0, 0, 0);
+color2.hex();
+  </code></pre>
+    <a href="../../index.html" class="gradient"> Home </a>
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script> 
 </body>

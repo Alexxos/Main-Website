@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+      <link rel="stylesheet" href="../../styles/atom-light.css">
+      <link rel="stylesheet" href="../../styles/dracula.css">
+</head>
+<body>
+    <h1>Closures</h1>
+<p>Closures are frequently used in JavaScript for object data privacy, in event handlers and callback functions, and in partial applications, currying, and other functional programming patterns.</p>
+<p>a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.
+To use a closure, define a function inside another function and expose it. To expose a function, return it or pass it to another function.
+The inner function will have access to the variables in the outer function scope, even after the outer function has returned.</p>
+
+<pre><code class="hljs javascript">
+function retirement(retirementAge) {
+    let str = ' years left until retirement'
+    return function (yearOfBirth) {
+        let age = 2020 - yearOfBirth;
+        console.log((retirementAge - age) + str) }}
+
+let retirementUS = retirement(66);
+retirementUS(1990)
+retirement(70)(2000)
+
+let retirementGermany = retirement(65);
+let retirementIceland = retirement(67);
+
+retirementGermany(1990);
+retirementIceland(1990)
+
+
+// function interviewQuestion (job) {
+//   if (job === 'designer') {
+//       return function(name) {
+//           console.log(name+ ' can you please explain what UX is?')
+//       }
+//   } else if (job === 'teacher') {
+//       return function(name) {
+//          console.log('what subject do you teach ' + name + ' ?') }}}
+
+// let teacherQuestion = interviewQuestion('teacher');
+// teacherQuestion('James')
+
+function interviewQuestion(job) {
+    return function(name) {
+        if (job === 'designer') {
+            console.log('wow you are a designer' + name)
+        } else { console.log (`what do you do ${name} ?` )} }}
+
+interviewQuestion('teacher') ('john')           
+</code></pre>
+
+    <a href="../../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

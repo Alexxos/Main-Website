@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes, extends, Super and subclasses</title>
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+      <link rel="stylesheet" href="../../styles/atom-light.css">
+      <link rel="stylesheet" href="../../styles/dracula.css">
+<body>
+    <h1>Classes, extends, Super and subclasses</h1>
+
+        <pre><code class="hljs javascript">
+class Color {
+	constructor(r, g, b, name) {
+		this.r = r;
+		this.g = g;
+		this.b = b;
+		this.name = name; }
+	innerRGB() {
+		const { r, g, b } = this;
+		return `${r}, ${g}, ${b}`; }
+	rgb() {
+		return `rgb(${this.innerRGB()})`; }
+	rgba(a = 1.0) {
+		return `rgba(${this.innerRGB()}, ${a})`; }
+	hex() {
+		const { r, g, b } = this;
+		return (
+			'#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1) );}}
+
+const red = new Color(255, 67, 89, 'tomato');
+const white = new Color(255, 255, 255, 'white');
+            code here(){a*b}
+
+class Pet {
+	constructor(name, age) {
+		console.log('IN PET CONSTRUCTOR!');
+		this.name = name;
+		this.age = age; }
+	eat() {
+		return `${this.name} is eating!`; }}
+
+class Cat extends Pet {
+	constructor(name, age, livesLeft = 9) {
+		console.log('IN CAT CONSTRUCTOR!');
+		super(name, age);
+		this.livesLeft = livesLeft; }
+	meow() {
+		return 'MEOWWWW!!'; }}
+
+class Dog extends Pet {
+	bark() {
+		return 'WOOOF!!'; }
+	eat() {
+		return `${this.name} scarfs his food!`; }}
+</code></pre>
+    
+<h3>Jonas</h3>
+<pre><code class="hljs javascript">
+// Classes.
+
+//ES5 : prototype allowed to add methods to function constructor Object blueprint.
+var Person5 = function(name,yearOfBirth,job){
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;}
+
+Person5.prototype.calculateAge = 
+function() {
+    var age = new Date().getFullYear() - this.yearOfBirth;
+    console.log(age)}
+
+var john5 = new Person5('John', 1990, 'teacher')
+console.log(john5)
+
+// ES6 classes
+class Person6 {
+    constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job; }
+
+    calculateAge(){
+        var age =  new Date().getFullYear() - this.yearOfBirth; - this.yearOfBirth
+    console.log(age) }
+
+    static greeting(){
+        console.log('Hey there') }}
+
+const john6 = new Person6('john', 1980, 'baker')
+console.log(john6)
+
+john6.calculateAge();
+Person6.greeting();
+
+//-------------------------
+// Sub classes
+//-------------------------
+// ES5
+
+var Athlete5 = function(name, yearOfBirth, job, olympicGames, medals){
+    Person5.call(this,name,yearOfBirth,job);
+    this.olympicGames = olympicGames;
+    this.medals = medals;}
+
+Athlete5.prototype = Object.create(Person5.prototype);
+
+Athlete5.prototype.wonMedal = function() {
+    this.medals++;
+    console.log(this.medals)}
+johnAthlete5 = new Athlete5('John', 1990, 'Swimmer', 3, 10)
+
+//{name: "John", yearOfBirth: 1990, job: "Swimmer", olympicGames: 3, medals: 10}
+
+// the Athlete class inherited all Person5 methods :
+// Person5 is the super class // Athlere5 is the sub class
+johnAthlete5.calculateAge(); // 30
+johnAthlete5.wonMedal() // 11
+
+//------------------------------
+//ES 6 
+// -----------------------------
+
+class Athlete6 extends Person6 {
+    constructor(name, yearOfBirth,job, olympicGames, medals){
+        super(name,yearOfBirth,job)
+        this.olympicGames = olympicGames;
+		this.medals = medals; }
+		
+    wonMedals(){
+        this.medals++;
+        console.log(this.medals) }}
+
+const JackAthlete6 = new Athlete6('John', 1970, 'swimmer', 5,4)
+
+JackAthlete6.wonMedals(); //5
+JackAthlete6.calculateAge(); // 50
+</code></pre>
+
+
+
+
+
+
+	<a href="../../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</body>
+</html>

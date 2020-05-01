@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps</title>
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+      <link rel="stylesheet" href="../../styles/atom-light.css">
+      <link rel="stylesheet" href="../../styles/dracula.css">
+</head>
+<body>
+    <h1>MAPS</h1>
+
+<pre><code class="hljs javascript">
+// <strong>set</strong> 
+const question = new Map();
+question.set('question', 'what is the official name of Javascript?');
+question.set(1, 'es5')
+question.set(2, 'es6')
+question.set(3, 'es2015')
+question.set(4, 'es7')
+question.set('correct', 4)
+question.set(true, 'correct answer')
+question.set(false, 'wrong dude')
+
+console.log(question)
+/*[[Entries]]
+0: {"question" => "what is the official name of Javascript?"}
+1: {1 => "es5"}
+2: {2 => "es6"}
+3: {3 => "es2015"}
+4: {4 => "es7"}
+5: {"correct" => 4}
+6: {true => "correct answer"}
+7: {false => "wrong dude"} */
+
+//<strong>get</strong>
+console.log(question.get('question')) // what is the official name of Javascript?
+console.log(question.get(4))// es7
+
+//<strong>size</strong>
+console.log(question.size)// 8
+
+//<strong>has</strong>
+if(question.has(4)) {
+    //delete
+    question.delete(4);
+}
+
+//<strong>clear </strong>
+// question.clear() remove everything
+
+//<strong>Maps are iterable</strong> and you can loop in them: 
+//forEach
+question.forEach((value, key) =>
+console.log(`this is ${key}, and this is set to ${value}`)
+)
+
+// this is question, and this is set to what is the official name of Javascript?
+// this is 1, and this is set to es5
+// this is 2, and this is set to es6
+// this is 3, and this is set to es2015
+// this is correct, and this is set to 4
+// this is true, and this is set to correct answer
+// this is false, and this is set to wrong dude
+
+//<strong>for of</strong>
+for (let [key, value] of question.entries()) {
+    console.log(key, value)
+}
+
+// question what is the official name of Javascript?
+//  1 "es5"
+//  2 "es6"
+//  3 "es2015"
+//  correct 4
+//  true "correct answer"
+//  false "wrong dude"
+
+//
+for (let [key, value] of question.entries()) {
+    if (typeof(key) === 'number') 
+    {console.log(key, value)}
+    }
+// 1 "es5"
+// 2 "es6"
+// 3 "es2015"
+
+const ans = parseInt(prompt('Write the correct answer'));
+console.log(question.get(ans === question.get('correct')));
+</code></pre>
+    
+
+
+
+
+
+
+
+
+    <a href="../../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</body>
+</html>

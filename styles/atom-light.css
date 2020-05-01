@@ -93,3 +93,44 @@ hue-6-2: #c18401
   .hljs-link {
     text-decoration: underline;
   }
+
+
+h1, {
+  text-align: center;
+} 
+
+table {
+  border: 2px solid black
+}
+
+tr:nth-of-type(odd){
+  background-color: rgb(105, 186, 212, 0.5);
+}
+
+.box {
+  font-size: 250px;
+  color: white;
+  padding: 5px;
+  max-width:45%;
+  max-height:auto;
+  transition: transform ease 0.5s;
+  overflow: auto;
+ 
+}
+.box:hover{
+ transform: scale(1.5);
+ padding-left: 4rem;
+
+}
+
+.container {
+display:flex;
+flex-direction: row;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+}
+
+.container img {
+ width: 50%;
+}

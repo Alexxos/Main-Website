@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object.create, Bind, Call, Apply</title>
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+      <link rel="stylesheet" href="../../styles/atom-light.css">
+      <link rel="stylesheet" href="../../styles/dracula.css">
+</head>
+<body>
+    <h1>Object.create, Bind, Call, Apply</h1>
+
+<h3>Object.create</h3>
+<pre><code class="hljs javascript">
+// <strong>The Object.create()</strong>  method creates a new object, 
+// using an existing object as the prototype 
+// of the newly created object.
+
+const personProto = {
+    calculateAge: function(){
+        console.log(2020 - (this.yearOfBirth)) } }
+
+let Joe = Object.create(personProto);
+Joe.name = 'Joe';
+Joe.yearOfBirth = 1890;
+Joe.job = 'fireman'
+
+let Tao = Object.create(personProto, {
+    name: {value: 'Tao'},
+    yearOfBirth : {value: 1997},
+    job: {value: 'Yoga teacher'} });
+</code></pre>
+<h3>Bind, Call, Apply</h3>
+<pre><code class="hljs javascript">
+
+let john = {
+    name: 'John',
+    age: 37,
+    job: 'teacher',
+    presentation: 
+    function(style,timeOfDay){
+        if (style === 'formal'){
+            console.log(` Hello, Im ${this.name}, 
+            I am ${this.age} years old ${this.job} and have a good ${timeOfDay}`)
+        } else if (style === 'friendly') {
+            console.log(` Hello, Im ${this.name}, I am ${this.age} years old 
+            ${this.job}. Have a nice ${timeOfDay}`) }},}
+
+john.presentation('formal', 'morning')
+// Hello, Im John, I am 37 years old teacher
+
+let emily = {
+    name: 'emily',
+    age: 37,
+    job: 'teacher'}
+
+// <strong>Call => METHOD BORROWING (john method on emily)</strong> 
+john.presentation.call(emily, 'friendly', 'afternoon')
+// Hello, Im emily, I am 37 years old teacher. Have a nice afternoon
+
+// <strong>apply only accept array</strong> 
+john.presentation.apply(emily, ['friendly', 'morning'])
+
+// <strong>Bind generate a copy of a function you can store and make some arguments as presets.</strong> 
+
+let johnFriendly = john.presentation.bind(john, 'friendly')
+
+johnFriendly ('lunch')
+johnFriendly('dinner')
+
+// <strong>This is called currying.</strong>         
+//Create a function based on another function with preset parameters.
+let EmilyFormal = john.presentation.bind(emily, 'formal')
+EmilyFormal('afternoon')
+
+
+let years = [2015, 1965, 1928, 1981, 2005]
+
+function arrayCalc(arr, fn) {
+    let arrRes = [];
+    for (let i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]))
+    }
+    return arrRes }
+
+function calculateAge(el) {
+    return 2020 - el; }
+
+function isFullAge(limit, el) {
+    return el >= limit; }
+
+let ages = arrayCalc(years, calculateAge);
+let fullJapan = arrayCalc(ages,isFullAge.bind(this, 20))
+console.log(ages)
+console.log(fullJapan)    
+</code></pre>
+    
+
+
+
+
+
+
+
+
+    <a href="../../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</body>
+</html>
