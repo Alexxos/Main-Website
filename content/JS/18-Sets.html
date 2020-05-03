@@ -1,21 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sets</title>
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/dracula.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/atom-light.css">
+    <link rel="stylesheet" href="../../styles/dracula.css">
 </head>
+
 <body>
     <h1>Sets</h1>
-    <p>Sets are a new object type with ES6 (ES2015) that allow creating collections of unique values. The values in a set can be either simple primitives like strings or integers as well as more complex object types like object literals or arrays.
+    <p>Sets are a new object type with ES6 (ES2015) that allow creating collections of unique values. The values in a
+        set can be either simple primitives like strings or integers as well as more complex object types like object
+        literals or arrays.
 
-        Here’s a simple example showing off a basic set and a few of the available methods on it like add, size, has, forEach, delete and clear:</p>
-<pre><code class="hljs javascript">
+        Here’s a simple example showing off a basic set and a few of the available methods on it like add, size, has,
+        forEach, delete and clear:</p>
+    <pre><code class="hljs javascript">
 let animals = new Set();
 
 animals.add('🐷');
@@ -31,7 +34,7 @@ animals.delete('🐷');
 console.log(animals.has('🐷')); // false
             
 animals.forEach(animal => {
-     console.log(`Hey ${animal}!`);
+    console.log(`Hey ${animal}!`);
 });
             
 // Hey 🐼!
@@ -41,14 +44,14 @@ animals.forEach(animal => {
 animals.clear();
 console.log(animals.size); // 0
 </code></pre>
-    
-        https://alligator.io/js/sets-introduction/
-        <p>https://www.youtube.com/watch?v=nZ1DMMsyVyI</p>
+
+    https://alligator.io/js/sets-introduction/
+    <p>https://www.youtube.com/watch?v=nZ1DMMsyVyI</p>
 
 
 
-        String.padStart() /   String.padEnd()
-        Sets
+    String.padStart() / String.padEnd()
+    Sets
 
 
 
@@ -56,6 +59,7 @@ console.log(animals.size); // 0
 
     <a href="../../index.html" class="gradient"> Home </a>
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
+
 </html>

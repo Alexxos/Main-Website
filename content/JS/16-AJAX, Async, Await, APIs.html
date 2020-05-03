@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AJAX and APIs</title>
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <!-- <link rel="stylesheet" href="../../styles/atom-light.css"> -->
-      <link rel="stylesheet" href="../../styles/Dom.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <!-- <link rel="stylesheet" href="../../styles/atom-light.css"> -->
+    <link rel="stylesheet" href="../../styles/Dom.css">
 </head>
+
 <body>
     <h1>AJAX and APIs<h1>
 
-<h3>Jonas: AJAX calls with Fetch and Promises</h3>
-    <pre><code>
+            <h3>Jonas: AJAX calls with Fetch and Promises</h3>
+            <pre><code>
 // https://cors-anywhere.herokuapp.com/ to avoid errors.
 
 function getWeather(woeid) {
@@ -51,8 +52,8 @@ getWeatherAW(906057).then(data => {
     dataHK = data;
     console.log(dataHK) });
 </code></pre>
-<h3>Colt: Async Keyword:</h3>
-<pre><code>
+            <h3>Colt: Async Keyword:</h3>
+            <pre><code>
 // REGULAR function returns a string:
 // function greet() {
 // 	return 'HELLO!!!';
@@ -92,8 +93,8 @@ add(6, 7)
 		console.log('PROMISE REJECTED WITH: ', err);
 	});
 </code></pre>
-<h3>Await Keyword:</h3>
-<pre><code>
+            <h3>Await Keyword:</h3>
+            <pre><code>
 async function getPlanets() {
 	const res = await axios.get('https://swapi.co/api/planets/');
 	console.log(res.data); //only runs once the previous line is complete (the axios promise is resolved)
@@ -112,8 +113,8 @@ getPlanets();
 // });
 </code></pre>
 
-<h3>Error Handling in Async functions</h3>
-<pre><code>
+            <h3>Error Handling in Async functions</h3>
+            <pre><code>
     // ONE OPTION FOR ERROR HANDLING...
 async function getPlanets() {
 	//Invalid URL...
@@ -138,8 +139,8 @@ async function getPlanets() {
 getPlanets();
 </code></pre>
 
-<h3>Multiple Await</h3>
-<pre><code>
+            <h3>Multiple Await</h3>
+            <pre><code>
     const moveX = (element, amount, delay) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -279,8 +280,8 @@ getPlanets();
     // );
 </code></pre>
 
-<h3>Parallel Vs Sequential Requests</h3>
-<pre><code>
+            <h3>Parallel Vs Sequential Requests</h3>
+            <pre><code>
 // SEQUENTIAL REQUESTS!
 async function get3PokemonSequential() {
 	const poke1 = await axios.get('https://pokeapi.co/api/v2/pokemon/1');
@@ -339,8 +340,8 @@ async function lightShow() {
 lightShow();
 
 </code></pre>
-<h3>Refactoring with Promise.all</h3>
-<pre><code>
+            <h3>Refactoring with Promise.all</h3>
+            <pre><code>
 // PARALLEL REQUESTS!
 async function get3Pokemon() {
 	const prom1 = axios.get('https://pokeapi.co/api/v2/pokemon/1');
@@ -360,8 +361,9 @@ get3Pokemon();
 
 </code></pre>
 
-    <a href="../../index.html" class="gradient"> Home </a>
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+            <a href="../../index.html" class="gradient"> Home </a>
+            <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+            <script>hljs.initHighlightingOnLoad();</script>
 </body>
+
 </html>

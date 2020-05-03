@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spread, Rest & Destructuring</title>
     <link rel="stylesheet" href="../../styles/Array.css">
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/dracula.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/atom-light.css">
+    <link rel="stylesheet" href="../../styles/dracula.css">
 </head>
 </head>
+
 <body>
     <H1>Spread, Rest & Destructuring</H1>
     <h3>Default parameters</h3>
-<pre><code class="hljs javascript">
+    <pre><code class="hljs javascript">
 function SmithPerson (firstName, yearOfBirth,  lastName= 'Smith', nationality='Dutch'){
 this.firstName = firstName; this.lastName = lastName; this.yearOfBirth = yearOfBirth;
 this.nationality = nationality }
@@ -25,7 +26,7 @@ console.log(john) //{firstName: "John", lastName: "Smith", yearOfBirth: 1990, na
 function multiply(a, b = 1) {return a * b;} // multiply(4) return 4
     </code></pre>
     <h3>Spread operator</h3>
-<pre><code class="hljs javascript">
+    <pre><code class="hljs javascript">
 /* <strong>Spread  for Function calls </strong> 
 Expands an iterable (array, string, etc.) into list of arguments: */
 function addFourAges (a,b,c,d) { return a + b + c + d  }
@@ -61,8 +62,8 @@ const catDog = { ... feline, ... canine};
 // { legs:4, family: 'Caninae',, furry: true }
 </code> </pre>
 
-<h3>Rest parameter</h3>
-<pre><code class="hljs javascript">
+    <h3>Rest parameter</h3>
+    <pre><code class="hljs javascript">
 //  Represent an indefinite number of arguments as an array
 function sumAll(...nums) {let total = 0; for (let n of nums) total +=n; return total }
     sum(1,2,3,4,5) // 15 
@@ -70,10 +71,10 @@ function sumAll(...nums) {let total = 0; for (let n of nums) total +=n; return t
 function isFullAge(limit, ...years) {years.forEach( cur => console.log((2020 - cur) >= limit));}
 isFullAge(16, 1990,2018,1900) // true, false, true;
 </code> </pre>
-    
-<h3>Destructuring</h3>
-        
-<pre><code class="hljs javascript">
+
+    <h3>Destructuring</h3>
+
+    <pre><code class="hljs javascript">
 /*A short, clean syntax to 'unpack': Values from arrays, Properties from objects, 
 into distinct variable. */
 
@@ -103,10 +104,11 @@ const fullName = ({first, last}) => {return `${first} ${last}`}
 const runner = { first: 'Eli', last: 'Kipchoge', country: 'Kenya' };
 fullName(runner); // Eli Kipchoge
 </code></pre>
-</div>
+    </div>
     <a href="../../index.html" class="gradient"> Home </a>
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
-    
+    <script>hljs.initHighlightingOnLoad();</script>
+
 </body>
+
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asynchronous code, callbacks & Promises</title>
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/Dom.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Asynchronous code, callbacks & Promises</title>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+	<link rel="stylesheet" href="../../styles/atom-light.css">
+	<link rel="stylesheet" href="../../styles/Dom.css">
 </head>
+
 <body>
 	<h1>Asynchronous code, callbacks & Promises</h1>
 	<p>When a script calls a function, the interpreter adds it to the
@@ -20,24 +21,24 @@
 		it off the stack and resumes execution where it left off in
 		the last code listing.</p>
 	<p>JS is single threaded: At any given point in time, that
-single JS thread is running at most one line of JS code </p>
-<p>Browsers come with Web APIs that
-	are able to handle certain tasks in
-	the background (like making
-	requests or setTimeout)
-	The JS call stack recognizes these
-	Web API functions and passes them
-	off to the browser to take care of
-	Once the browser finishes those
-	tasks, they return and are pushed
-	onto the stack as a callback.</p>
+		single JS thread is running at most one line of JS code </p>
+	<p>Browsers come with Web APIs that
+		are able to handle certain tasks in
+		the background (like making
+		requests or setTimeout)
+		The JS call stack recognizes these
+		Web API functions and passes them
+		off to the browser to take care of
+		Once the browser finishes those
+		tasks, they return and are pushed
+		onto the stack as a callback.</p>
 
-<p>A Promise is an object representing
-	the eventual completion or failure
-	of an asynchronous operation</p>
+	<p>A Promise is an object representing
+		the eventual completion or failure
+		of an asynchronous operation</p>
 
-<h3>Colt: Creating Promises</h3>
-        <pre><code class="hljs javascript">
+	<h3>Colt: Creating Promises</h3>
+	<pre><code class="hljs javascript">
 // <strong></strong>		
 const willGetYouADog = new Promise((resolve, reject) => {
 	const rand = Math.random();
@@ -51,8 +52,8 @@ willGetYouADog.catch(() => {
 		console.log(':( NO DOG'); });
 </code></pre>
 
-<h3> returning Promises from functions:</h3>	
-<pre><code class="hljs javascript">
+	<h3> returning Promises from functions:</h3>
+	<pre><code class="hljs javascript">
 // <strong> returning Promises from functions:</strong>	
 const makeDogPromise = () => {
 	return new Promise((resolve, reject) => {
@@ -74,8 +75,8 @@ makeDogPromise()
 		console.log(':( NO DOG'); });
 </code></pre>
 
-<h3>Resolving/Rejecting w/ values</h3>
-<pre><code class="hljs javascript">
+	<h3>Resolving/Rejecting w/ values</h3>
+	<pre><code class="hljs javascript">
 
 //This is a FAKE Http Request Function
 //It takes 1 second to resolve or reject the promise, depending on the url that is passed in
@@ -116,8 +117,8 @@ fakeRequest('/dogs')
 		console.log('REQUEST FAILED'); });
 </code></pre>
 
-<h3>Chaining promises</h3>
-<pre><code>
+	<h3>Chaining promises</h3>
+	<pre><code>
 //This is a FAKE Http Request Function
 //It takes 1 second to resolve or reject the promise, depending on the url that is passed in
 const fakeRequest = (url) => {
@@ -197,9 +198,9 @@ fakeRequest('/users')
 // 	});
 
 </code></pre>
-<h3></h3>
-        <h3>Promise refactoring:</h3>
-<pre><code class="hljs javascript">
+	<h3></h3>
+	<h3>Promise refactoring:</h3>
+	<pre><code class="hljs javascript">
 	const moveX = (element, amount, delay) => {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
@@ -316,8 +317,8 @@ const btn = document.querySelector('button');
 	// 		alert('CANNOT MOVE FURTHER!'); } );
 	
 </code></pre>
-<h3>Jonas</h3>
-    <pre><code>
+	<h3>Jonas</h3>
+	<pre><code>
  // ES6 : Promises to escape Callback Hell
        
 // First : Produce Promises: 
@@ -397,16 +398,17 @@ async function getRecipesAW() {
 getRecipesAW().then(result =>{
 console.log(`${result} is the best`) }) //234: tomato sauce is the best
     </code></pre>
-    
-     
 
 
 
 
 
 
-    <a href="../../index.html" class="gradient"> Home </a>
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+
+
+	<a href="../../index.html" class="gradient"> Home </a>
+	<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </body>
+
 </html>

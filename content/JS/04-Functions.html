@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Functions</title>
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/dracula.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/atom-light.css">
+    <link rel="stylesheet" href="../../styles/dracula.css">
 </head>
+
 <body>
     <h1>Functions</h1>
 
-<h3>Function Declaration</h3>
-<pre><code class="hljs javascript">
+    <h3>Function Declaration</h3>
+    <pre><code class="hljs javascript">
 function sayHi() { alert('Hello'); }
 </code></pre>
 
-<h3>Lexical Scope - Variable 'visibility</h3>
-<pre><code class="hljs javascript">
+    <h3>Lexical Scope - Variable 'visibility</h3>
+    <pre><code class="hljs javascript">
 //The location where a variable is defined dictates where we have access to that variable
 let radius = 8;
 if(radius .0){
@@ -37,15 +38,15 @@ function outer() {
 outer() // Black Panther, please save me!
 </code></pre>
 
-<h3>Function Expression</h3>
-<pre><code class="hljs javascript">
+    <h3>Function Expression</h3>
+    <pre><code class="hljs javascript">
 const square = function (num) {return num * num;}
 square(7) // 49
 </code></pre>
 
-<h3>Higher order Functions / First Class Functions</h3>
-<h3>1 - Functions as Arguments (Aka Callback Functions)</h3>
-<pre><code class="hljs javascript">
+    <h3>Higher order Functions / First Class Functions</h3>
+    <h3>1 - Functions as Arguments (Aka Callback Functions)</h3>
+    <pre><code class="hljs javascript">
 function callTwice(func){
     func();
     func(); }
@@ -74,8 +75,8 @@ console.log(fullAges) // [false, true, true, true, true];
 console.log(HeartRate) //[204, 170, 145, 181, 192]
 </code></pre>
 
-<h3>2 - Functions returning Functions</h3>
-<pre><code class="hljs javascript">
+    <h3>2 - Functions returning Functions</h3>
+    <pre><code class="hljs javascript">
 function interviewQuestion (job) {
     if (job === 'designer') {
         return function(name) {
@@ -91,8 +92,8 @@ let designerQuestion = interviewQuestion('designer');
 designerQuestion('Annie');
 </code></pre>
 
-<h3>Arrow Functions</h3>
-<pre><code class="hljs javascript">
+    <h3>Arrow Functions</h3>
+    <pre><code class="hljs javascript">
 // "syntactically compact alternative"to a regular function expression
 
 const square = (x) => { return x * x}
@@ -113,29 +114,30 @@ const isEven = num => (
 const isEven = num => num % 2 === 0;
 </code></pre>
 
-<h3>Immediatly invoked Functions</h3>
-<pre><code class="hljs javascript">
+    <h3>Immediatly invoked Functions</h3>
+    <pre><code class="hljs javascript">
 (function () {
     let score = Math.random() * 10;
     console.log(score);}) ();
 </code></pre>
 
-<h3>Hoisting</h3>
-<pre><code class="hljs javascript">
+    <h3>Hoisting</h3>
+    <pre><code class="hljs javascript">
 // Hoisting is a JavaScript mechanism where variables and function declarations 
 //are moved to the top of their scope before code execution.
 // Functions expressions are NOT hoisted.
 </code></pre>
 
-<h3>Closures</h3>
-<pre><code class="hljs javascript">
+    <h3>Closures</h3>
+    <pre><code class="hljs javascript">
 ! Insert something here !
 </code></pre>
 
 
-<a href="../../index.html" class="gradient"> Home </a>  
-<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script> 
+    <a href="../../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </body>
+
 </html>

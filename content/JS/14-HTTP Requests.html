@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Https Requests</title>
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/dracula.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Https Requests</title>
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+	<link rel="stylesheet" href="../../styles/atom-light.css">
+	<link rel="stylesheet" href="../../styles/dracula.css">
 </head>
+
 <body>
-    <h1>HTTP Requests</h1>
-<h3>XMLHttpRequests: the basics</h3>
-    <pre><code class="hljs javascript">
+	<h1>HTTP Requests</h1>
+	<h3>XMLHttpRequests: the basics</h3>
+	<pre><code class="hljs javascript">
 const firstReq = new XMLHttpRequest();
 firstReq.addEventListener('load', function() {
 	console.log('IT WORKED!!!');
@@ -29,8 +30,8 @@ firstReq.send();
 console.log('Request Sent!');
 </code></pre>
 
-<h3>Chaining Requests:</h3>
-<pre><code>
+	<h3>Chaining Requests:</h3>
+	<pre><code>
 const firstReq = new XMLHttpRequest();
 firstReq.addEventListener('load', function() {
 	console.log('FIRST REQUEST WORKED!!!');
@@ -56,8 +57,8 @@ firstReq.send();
 console.log('Request Sent!'); 
 </code></pre>
 
-<h3>A better way: Fetch</h3>
-<pre><code>
+	<h3>A better way: Fetch</h3>
+	<pre><code>
 fetch('https://swapi.co/api/planetsuy21/')
 	.then((response) => {
 		if (!response.ok)
@@ -74,8 +75,8 @@ fetch('https://swapi.co/api/planetsuy21/')
 		console.log(err); });
 </code></pre>
 
-<h3>Chaining Requests:</h3>
-<pre><code>
+	<h3>Chaining Requests:</h3>
+	<pre><code>
 fetch('https://swapi.co/api/planets/')
 	.then((response) => {
 		if (!response.ok)
@@ -103,8 +104,8 @@ fetch('https://swapi.co/api/planets/')
 		console.log(err); });
 </code></pre>
 
-<h3> Refactoring Fetch chains</h3>
-<pre><code>
+	<h3> Refactoring Fetch chains</h3>
+	<pre><code>
 const checkStatusAndParse = (response) => {
 	if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
 
@@ -137,8 +138,8 @@ fetchNextPlanets()
 		console.log(err); });
 </code></pre>
 
-<h3>An even better way: Axios</h3>
-<pre><code>
+	<h3>An even better way: Axios</h3>
+	<pre><code>
 axios
 	.get('https://swapi.co/api/planets/')
 	.then((res) => {
@@ -198,8 +199,8 @@ axios
 // 		console.log(err); });
 </code></pre>
 
-<h3>Sequential Axios Requests:</h3>
-<pre><code>
+	<h3>Sequential Axios Requests:</h3>
+	<pre><code>
  axios
 	.get('https://swapi.co/api/planets/')
 	.then((res) => {
@@ -258,8 +259,9 @@ axios
 // 		console.log(err); }); 
 </code></pre>
 
-    <a href="../../index.html" class="gradient"> Home </a>
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+	<a href="../../index.html" class="gradient"> Home </a>
+	<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 </body>
+
 </html>

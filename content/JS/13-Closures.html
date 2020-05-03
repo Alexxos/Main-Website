@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Closures</title>
-    <link rel="stylesheet"
-      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-      <link rel="stylesheet" href="../../styles/atom-light.css">
-      <link rel="stylesheet" href="../../styles/dracula.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/atom-light.css">
+    <link rel="stylesheet" href="../../styles/dracula.css">
 </head>
+
 <body>
     <h1>Closures</h1>
-<p>Closures are frequently used in JavaScript for object data privacy, in event handlers and callback functions, and in partial applications, currying, and other functional programming patterns.</p>
-<p>a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.
-To use a closure, define a function inside another function and expose it. To expose a function, return it or pass it to another function.
-The inner function will have access to the variables in the outer function scope, even after the outer function has returned.</p>
+    <p>Closures are frequently used in JavaScript for object data privacy, in event handlers and callback functions, and
+        in partial applications, currying, and other functional programming patterns.</p>
+    <p>a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are
+        created every time a function is created, at function creation time.
+        To use a closure, define a function inside another function and expose it. To expose a function, return it or
+        pass it to another function.
+        The inner function will have access to the variables in the outer function scope, even after the outer function
+        has returned.</p>
 
-<pre><code class="hljs javascript">
+    <pre><code class="hljs javascript">
 function retirement(retirementAge) {
     let str = ' years left until retirement'
     return function (yearOfBirth) {
@@ -57,20 +62,7 @@ interviewQuestion('teacher') ('john')
 
     <a href="../../index.html" class="gradient"> Home </a>
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
