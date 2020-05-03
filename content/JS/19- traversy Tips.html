@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traversy Tips</title>
+    <link rel="stylesheet"
+      href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+      <link rel="stylesheet" href="../../styles/atom-light.css">
+      <link rel="stylesheet" href="../../styles/Dom.css">
+</head>
+<body>
+    <h1>Tips from Traversy</h1>
+    <h3>What to master before JS framework </h3>
+    <ol>
+        <li><strong>Modules:</strong></li>
+         <ul>
+            <li>ES6 Modules, Typescrit (Angular)</li>
+            <li>Parcel, Webpack & Babel</li>
+            <li>Export and import Default</li>
+        </ul>
+        <li><strong>Classes :</strong></li>
+         <ul>
+             <li>are used in React and Angular but you need to learn about classes and inheritance before learning a framework </li>
+            <li>Structuring a class</li>
+            <li>Constructor</li>
+            <li>Methods & properties</li>
+            <li>instantiation (Create object from the class)</li>
+            <li>extending classes</li>
+        </ul>
+        <li><strong>Arrow functions:</strong> </li>
+            <ul>
+                <li>Looks cleaner and less line of code</li>
+                <li>standard modern JS</li>
+                <li>Scope and the 'lexical this'</li>
+            </ul>
+        <li><strong>Promises / Asynchronous Requests:</strong> </li>
+        <ul>
+            <li>learn how to create and receive promises :</li>
+            <li>standard .then() and .catch syntax</li>
+            <li>Async/Await is optional but recommanded</li>
+            <li>learn the Fetch API for make HTTP requests</li>
+        </ul>
+        <li><strong>Destructuring:</strong></li>
+        <ul>
+            <li>Unpack values from object and arrays. Used a lot in Framework for cleaner code :</li>
+<pre><code>
+const { name, email } = user;
+const { name, email, address: {city} } = user;
+</code></pre>
+            <li></li>
+        </ul>
+    </li>
+        <li><strong>Component & State:</strong> </li>
+        <ul>
+            <li>UIs are broken up into individual components of which have some sort of state associated with them</li>
+            <li>Each component can have it's own data & state of being</li>
+            <li>We also have application level state, usually implemented using a state manager like Redux, Vuex,etc</li>
+            <li>Nested components (Parent & children)</li>
+            <li>Can be dirrectly inserted or used in a router</li>
+        </ul>
+        <li><strong>Spread operator (...) :</strong> </li>
+        <ul>
+            <li>State is usually immutable, meaning we can not simply change it, we need to make a copy. The spread operator allow us to do that:</li>
+            <pre><code>
+const userState ] { name: 'John' }
+const newUserState = { ...userState, age: 30 }
+            </code></pre>
+        </ul>
+        <li><strong>High order Array Functions :</strong></li>
+        <ul>
+            <li>Functions that use other functions as parameters. They are used all the time to iterate through and manipulate data.<li>
+            <li>forEach() : Basic iteration/looping</li>
+            <li>map() : manipulating the data to create a new array</li>
+            <li>filter() : Used to filder out certain pieces of data. Used a lot in state reducers</li>
+            <li></li>
+        </ul>
+        <li></li>
+        <li></li>
+    </ol>
+    
+    <pre><code class="hljs javascript">
+        {}
+        </code></pre>
+
+
+
+
+    <a href="../../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+</body>
+</html>
