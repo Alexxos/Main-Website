@@ -4,17 +4,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../styles/Grid.css">
     <title>Grid</title>
 </head>
+<style>
+    .grid-container {
+        height: 100vh;
+        border: 10px solid steelblue;
+        display: grid;
+        grid-template-columns:
+            /*1fr 2fr auto; */
+            repeat(3, 1fr);
+        grid-template-rows: 200px 200px;
+        /* grid-auto-rows: 200px; */
+        /* justify-items: center;
+    align-items: center; */
+        /* justify-content: center;
+    align-content: center; */
+        /* grid-row-gap: 20px;
+    grid-column-gap: 20px; */
+        grid-gap:
+            /*10px*/
+            20px;
+    }
+
+    .grid-item {
+        background-color: #ccc;
+        border: 2px solid orangered;
+        padding: 20px;
+    }
+
+    .item-1 {
+
+        /* grid-column-start: 1;
+        grid-column-end: 3; */
+        grid-column: 1 / 3;
+    }
+
+    .item-2 {
+        /* grid-column-start: 3;
+        grid-column-end: 4; */
+        grid-column: 3/4;
+        /* grid-row-start: 1;
+        grid-row-end: 3; */
+        grid-row: 1 /3;
+
+
+    }
+
+    .item-3 {
+        /* grid-row: 2/4; */
+        grid-row: 2 / span 2;
+        /* grid-column: 1/3 */
+        grid-column: 1 / span 2;
+    }
+
+    .item-4 {
+        grid-area: 4 / 1 / 4 / 4
+    }
+
+    .item-5 {
+        grid-area: 3 / 3 / span 2 / 3;
+        z-index: 1;
+    }
+
+    .item-6 {
+        /* justify-content: center;
+       align-self: center; */
+        place-self: center;
+    }
+
+    .grid-container2 {
+        height: 100vh;
+        border: 10px solid steelblue;
+        display: grid;
+        /* grid-template-areas:
+            "header header header"
+            "nav main ads"
+            "footer footer footer" ;
+        grid-template-rows: 60px 1fr 60px;
+        grid-template-columns: 20% 1fr 15%; */
+        grid-template: 
+        "header header header header" 100px
+        "nav main . ads" 1fr
+        "footer footer footer footer" 100px
+        / 20% 1fr 50px 15%
+        ;
+    }
+
+    .item-7 {
+        grid-area: header;
+    }
+
+    .item-8 {
+        grid-area: nav;
+    }
+
+    .item-9 {
+        grid-area: main;
+    }
+
+    .item-10 {
+        grid-area: ads;
+    }
+
+    .item-11 {
+        grid-area: footer;
+    }
+
+
+
+
+
+    h1 {
+        grid-area: nav;
+    }
+
+    img {
+        width: 50%;
+    }
+
+    .img-flex {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: slateblue;
+    }
+</style>
 
 <body>
 
     <h1>Grid</h1>
-    <iframe src="https://css-tricks.com/snippets/css/complete-guide-grid/" width="800px" height="1000px"></iframe>
 
 
+    <div class="grid-container">
+        <div class="grid-item item-1">
+            item 1
+        </div>
+        <div class="grid-item item-2">
+            item 2
+        </div>
+        <div class="grid-item item-3">
+            item 3
+        </div>
+        <div class="grid-item item-4">
+            item 4
+        </div>
+        <div class="grid-item item-5">
+            item 5
+        </div>
+        <div class="grid-item item-6">
+            item 6
+        </div>
+    </div>
 
+    <div class="grid-container2">
+        <div class="grid-item item-7">
+            item 7 - Header
+        </div>
+        <div class="grid-item item-8">
+            item 8 - Nav
+        </div>
+        <div class="grid-item item-9">
+            item 9- Main
+        </div>
+        <div class="grid-item item-10">
+            item 10 - Ads
+        </div>
+        <div class="grid-item item-11">
+            item 11 - Footer
+        </div>
+
+    </div>
+
+    <div class="img-flex">
+        <img src="../../medias/Grid/01-Grid.png" alt="">
+        <img src="../../medias/Grid/02-Cell.png" alt="">
+        <img src="../../medias/Grid/03-Track.png" alt="">
+        <img src="../../medias/Grid/04-Area.png" alt="">
+    </div>
 
     <a href="/index.html" class="gradient"> Home </a>
     <script src="script.js"></script>
