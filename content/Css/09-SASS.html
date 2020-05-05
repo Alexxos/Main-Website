@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SASS</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <link rel="stylesheet" href="../../dist/css/style.min.css">
 </head>
-<body>
-<h1>SASS</h1>
 
+<body>
+    <h1> <a href="https://sass-lang.com/guide">SASS</a> </h1>
+    
+
+    <header class="showcase">
+        <div class="container">
+            <nav>
+                <h1 class="logo">My Website</h1>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>
+            </nav>
+
+            <div class="showcase-content">
+                <div>
+                    <h1>Make Your Marketing Real</h1>
+                    <p class="my-1">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est
+                        eligendi tempore atque laborum. Quisquam nemo at non. Corrupti,
+                        vitae dolore.
+                    </p>
+                    <a href="#" class="btn-primary">Learn More</a>
+                    <a href="#" class="btn-secondary">Sign Up</a>
+                </div>
+                <img src="https://themesbrand.com/zooki/layouts/images/home-2-img.png" />
+            </div>
+        </div>
+    </header>
+
+    <h2>Variable in Css:</h2>
+    <li>Prefixed with a "$"</li>
+    <li>$primary-color:blue</li>
+    <h2>Nesting:</h2>
+    <pre><code class="language-scss">
+    nav {
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            display: inline-block
+        }
+         a {
+             display: block
+         }
+    }
+</code></pre>
+
+    <h2> Modules</h2>:
+    Can break your css into different files for each components.
+    <h2>Mixins and functions</h2>
+    <pre><code class="language-scss">
+@mixin tranform($property){
+    -webkit-transform: $property;
+    -ms-transform: $property';
+    transform: $property;
+}
+.box {@includ transform(rotate(30deg));}
+</code></pre>
+
+    <h2>Inheritance</h2>
+
+    <pre><code class="language-scss">
+/*This Css will print because %message-shared is extended */
+
+%message-shared {
+    border:1px solid #ccc;
+    padding: 10px;
+    color: #333;
+}
+
+.message {
+    @extend %message-shared;
+}
+.success {
+    @extend %message-shared;
+    border-color:green
+}
+</code></pre>
+    <h2>Operators in CSS</h2>
+    <h2>Conditionals</h2>
+
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
+
 </html>
