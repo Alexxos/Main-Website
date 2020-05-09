@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Html</title>
+    <title>Html & JSON</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
 </head>
+
 <body>
     <h1>HTTP</h1>
     <ul>
@@ -22,7 +26,25 @@
         </li>
     </ul>
 
+    <h1>JSON</h1>
+
+    <pre><code>
+        JSON.parse() :
+            var obj = JSON.parse('{"name":"John"}, "age":30, "city":"NYC"}');
+            
+        JSON.stringify():
+            var myJSON = JSON.stringify(obj);
+    </code></pre>
+
+    <h1>AJAX - Fetch/Axios</h1>
+
+
+
+
     <p><a href="https://www.w3schools.com/tags/ref_httpmessages.asp">HTTP Error messages</a>
+        <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </p>
 </body>
+
 </html>
