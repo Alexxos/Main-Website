@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios, Async/Await </title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <!-- <link rel="stylesheet" href="../../styles/atom-light.css"> -->
+    <link rel="stylesheet" href="../../styles/Dom.css">
+</head>
+</head>
+
+<body>
+<h1>Promises</h1>
+<pre><code class="hljs javascript">
+	// <strong></strong>		
+	const willGetYouADog = new Promise((resolve, reject) => {
+		const rand = Math.random();
+		if (rand < 0.5) {
+			resolve();
+		}else{
+			reject(); } });
+	willGetYouADog.then(() => {
+			console.log('YAY WE GOT A DOG!!!!'); });
+	willGetYouADog.catch(() => {
+			console.log(':( NO DOG'); });
+	</code></pre>
+	
+		<h3> returning Promises from functions:</h3>
+		<pre><code class="hljs javascript">
+	// <strong> returning Promises from functions:</strong>	
+	const makeDogPromise = () => {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				const rand = Math.random();
+				if (rand < 0.5) {
+					resolve();
+				}
+				else {
+					reject();
+				}
+			}, 5000); });};
+	
+	makeDogPromise()
+		.then(() => {
+			console.log('YAY WE GOT A DOG!!!!');
+		})
+		.catch(() => {
+			console.log(':( NO DOG'); });
+</code></pre>
+<h1>Axios</h1>
+<pre><code>
+axios
+	.get('https://swapi.co/api/planets/')
+	.then((res) => {
+		//We don't have to parse the JSON!
+		console.log(res.data);
+	})
+	.catch((err) => {
+		console.log('IN CATCH CALLBACK!!!');
+		console.log(err);
+	});
+
+axios
+	.get('https://swapi.co/api/planetaslkjdaklsjds/') //BAD URL!
+	.then((res) => {
+		//We don't need to check for a 200 status code, because...
+		//Axios will reject the promise for us, unlike fetch!
+		console.log(res.data);
+	})
+	.catch((err) => {
+		//In this example with a not-found URL, this callback will run...
+		console.log('IN CATCH CALLBACK!!!');
+		console.log(err);
+	});
+
+// ********************************
+// USING FETCH INSTEAD...
+// ********************************
+// const checkStatusAndParse = (response) => {
+// 	if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
+
+// 	return response.json();
+// };
+
+// const printPlanets = (data) => {
+// 	console.log('Loaded 10 more planets...');
+// 	for (let planet of data.results) {
+// 		console.log(planet.name);
+// 	}
+// 	return Promise.resolve(data.next);
+// };
+
+// const fetchNextPlanets = (url = 'https://swapi.co/api/planets/') => {
+// 	return fetch(url);
+// };
+
+// fetchNextPlanets()
+// 	.then(checkStatusAndParse)
+// 	.then(printPlanets)
+// 	.then(fetchNextPlanets)
+// 	.then(checkStatusAndParse)
+// 	.then(printPlanets)
+// 	.then(fetchNextPlanets)
+// 	.then(checkStatusAndParse)
+// 	.then(printPlanets)
+// 	.catch((err) => {
+// 		console.log('SOMETHING WENT WRONG WITH FETCH!');
+// 		console.log(err); });
+</code></pre>
+
+	<h3>Sequential Axios Requests:</h3>
+	<pre><code>
+ axios
+	.get('https://swapi.co/api/planets/')
+	.then((res) => {
+		//We don't have to parse the JSON!
+		console.log(res.data);
+	})
+	.catch((err) => {
+		console.log('IN CATCH CALLBACK!!!');
+		console.log(err);
+	});
+
+axios
+	.get('https://swapi.co/api/planetaslkjdaklsjds/') //BAD URL!
+	.then((res) => {
+		//We don't need to check for a 200 status code, because...
+		//Axios will reject the promise for us, unlike fetch!
+		console.log(res.data);
+	})
+	.catch((err) => {
+		//In this example with a not-found URL, this callback will run...
+		console.log('IN CATCH CALLBACK!!!');
+		console.log(err); });
+
+// ********************************
+// USING FETCH INSTEAD...
+// ********************************
+// const checkStatusAndParse = (response) => {
+// 	if (!response.ok) throw new Error(`Status Code Error: ${response.status}`);
+
+// 	return response.json();
+// };
+
+// const printPlanets = (data) => {
+// 	console.log('Loaded 10 more planets...');
+// 	for (let planet of data.results) {
+// 		console.log(planet.name);
+// 	}
+// 	return Promise.resolve(data.next);
+// };
+
+// const fetchNextPlanets = (url = 'https://swapi.co/api/planets/') => {
+// 	return fetch(url);
+// };
+
+// fetchNextPlanets()
+// 	.then(checkStatusAndParse)
+// 	.then(printPlanets)
+// 	.then(fetchNextPlanets)
+// 	.then(checkStatusAndParse)
+// 	.then(printPlanets)
+// 	.then(fetchNextPlanets)
+// 	.then(checkStatusAndParse)
+// 	.then(printPlanets)
+// 	.catch((err) => {
+// 		console.log('SOMETHING WENT WRONG WITH FETCH!');
+// 		console.log(err); }); 
+</code></pre>
+<h1>Async/Await</h1>
+<pre><code>
+// ES8: <strong>ASYNC / AWAIT</strong> to facilitate consuming Promises
+
+const getIds = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve([523, 884, 234, 875]);
+    }, 1500); });
+
+// .then methods if the promise is fullfiled. The argument is the result of the fullfield promise
+
+const getRecipe = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout(ID => {
+            const recipe = { title: 'tomato sauce', publisher: 'bibi' };
+            resolve(`${ID}: ${recipe.title}`);
+        }, 1500, recID); }); }
+
+const getRelated = publisher => {
+    return new Promise((resolve, reject) => {
+        setTimeout(pub => {
+            const recipe = { title: 'italian pizza', publisher: 'bibi' };
+            resolve(`${pub}: ${recipe.title}`);
+        }, 1500, publisher) }); }
+
+//The <strong> asycn function</strong> always return a promise:
+
+async function getRecipesAW() {
+                const Ids = await getIds;
+                console.log(Ids) // [523, 884, 234, 875]
+                const recipe = await getRecipe(Ids[2])
+                console.log(recipe); //234: tomato sauce
+
+                const related = await getRelated('bibi');
+                console.log(related); // bibi: italian pizza
+                 return recipe }
+
+// You need to use <strong>.then</strong>  to get a return value
+getRecipesAW().then(result =>{
+console.log(`${result} is the best`) }) //234: tomato sauce is the best
+</code></pre>
+    <a href="../../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
