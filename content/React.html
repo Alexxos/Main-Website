@@ -4,16 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../styles/Dom.css">
     <title>React</title>
 </head>
 
 <body>
     <h1>React</h1>
+    <h3>Basic props destructuring : </h3>
+    <pre><code class="language-Javascript">
+class Machine extends Components {
+    render() {
+        const {s1, s2, s3} = this.props;
+        return 
+< p>{s1}{s2}{s3}< /p>
+        }
+}
+</code></pre>
+
+    <h3>Loops in JSX with .map()</h3>
+    <pre><code class="language-Javascript">
+    class Message extends Components {
+        render() {
+            const msgs = [
+            {id:1, text: 'Greetings!'},
+            {id:2, text: 'Goodbye!'},
+            ]
+            return (
+                < ul>
+{msgs.map(m => < li >{m.text}< li /> )}
+                < /ul>
+            )
+            }
+    }
+</code></pre>
+    <pre><code class="language-Javascript">
+class Friends extends Components {
+    render() {
+        const {name, hobbies} = this.props;
+        return (
+            < ul>
+    {hobbies.map(h => < li >{h}< li /> )}
+// this loop each hobbies
+            < /ul>
+            )
+        }
+    }
+</code></pre>
+
+    <h3>Default props</h3>
+
+    <pre><code class="language-Javascript">
+class Hello extends Components {
+    static defaultProps = {
+        from: "Joel",
+    };
+
+    render() {
+        return < p> Hi {this.props.to} from {this.props.from}"< p/>
+    }
+}
+</code></pre>
+
+
+
+    <h3>Css inline Styles</h3>
+
+    <pre><code class="language-Javascript">
+class Machine extends Components {
+    
+    render() {
+        const colors = { 
+            fontSize: '50px',
+            backgroundColor: 'purle',
+            border: '2px solid, blue'
+                    };
+                    
+        return (
+            < div style={colors}> LoremIpsum < div/>
+        )
+    }
+}
+</code></pre>
+
+
+    <h3>Switch css .class</h3>
+
+    <pre><code class="language-Javascript">
+class Machine extends Components {
+    
+                    
+        return (
+// create .winner and .loser class in css
+< div className={winner ? 'win' : 'lose'}> {winner ? 'Winner!' : 'Loser!'} < div/>
+        )
+    }
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <pre><code class="language-Javascript">
+
+</code></pre>
+
+
+    <pre><code class="language-Javascript">
+
+</code></pre>
+
+    <pre><code class="language-Javascript">
+
+</code></pre>
+
+
+    <pre><code class="language-Javascript">
+
+</code></pre>
+
+
 
 
     <a href="../index.html" class="gradient"> Home </a>
-
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>
