@@ -215,8 +215,8 @@ function Mood() {
 export default Mood;
 </code></pre>
 
-<h4>State as props</h4>
-<pre><code class="language-Javascript">
+    <h4>State as props</h4>
+    <pre><code class="language-Javascript">
 Class CounterParent extends Component {
     constructor(props){
     super(props)
@@ -231,10 +231,117 @@ Class CounterParent extends Component {
     }
 }
 </code></pre>
+<h4>State & default props</h4>
+<pre><code class="language-Javascript">
+import React, { Component } from 'react'
+import Die from './Die'
+import './RollDice.css'
+        
+class RollDice extends Component {  
+static defaultProps = { 
+    sides: ["one", 'two', 'three', 'four', 'five', 'six'] }
 
-    <pre><code class="language-Javascript">
+constructor(props) {
+    super(props);
+    this.state = ({
+        die1: 'one', 
+        die2: 'six', 
+        rolling: false
+    })
+    this.roll = this.roll.bind(this);
+    }
 
+roll() {
+const newDie1 = this.props.sides
+[Math.floor(Math.random() * this.props.sides.length)];
+        
+const newDie2 = this.props.sides
+[Math.floor(Math.random() * this.props.sides.length)];
+            
+this.setState({ die1: newDie1, die2: newDie2, rolling: true })
+    setTimeout(() => {
+            this.setState({ rolling: false });
+                }, 1000);
+}
+
+render() {
+    return (
+        <div className="RollDice">
+            <Die face={this.state.die1} rolling={this.state.rolling}/>
+            <Die face={this.state.die2} rolling={this.state.rolling}/>
+            <br />
+            <button onClick={this.roll} disabled={this.state.rolling}>
+                        {this.state.rolling ? 'Rolling...' : 'click me'}
+            </button>
+            <h1>{this.state.face} </h1>
+        </div>
+        )
+    }
+}
+export default RollDice
 </code></pre>
+
+<h4>setState Callback Form: this.setState(callback)</h4>
+<pre><code class="language-Javascript">
+tripleKill(){
+    this.setState(st => {return {score: st.score +1}})
+    this.setState(st => {return {score: st.score +1}})
+    this.setState(st => {return {score: st.score +1}})
+}
+</code></pre>
+
+<h4>Abstracting State updates with functional setState</h4>
+<pre><code class="language-Javascript">
+//elsewhere in the code:
+function incrementCounter(prevState){
+    return { count: prevState.count + 1}
+}
+//somewhere in the Component
+this.setState(incrementCounter)
+
+incrementScore(curState) {
+    return { score: curState.score + 1}
+}
+
+tripleKill() {
+    this.setState(incrementScore)
+    this.setState(incrementScore)
+    this.setState(incrementScore)
+}
+</code></pre>
+<h4>Immutable state: the idea to create a new copy of the data structure (here with the spread operator)</h4>
+<pre><code class="language-Javascript">
+completeTodo(id) {
+//Array.prototype.map returns a new Array
+
+const newTodos = this.state.todos.map(todo => {
+    if (todo.id === id) {
+    //make a copy of the todo object wth done -> true
+    return {...todo, done: true}
+    }
+    return todo; //old todos can pass through
+})
+    this.setState({
+        todos: newTodos })} //setState to the new array 
+    </code></pre>
+
+<h4>Another exemple of mutating state with copy (...spread operator)</h4>
+<pre><code class="language-Javascript">
+let idx = Math.floor(Math.random() *this.props.options.lenght);
+let newIcon = this.props.options[idx];
+this.setState({ icons: [...this.state.icons, newIcon]})
+    </code></pre>
+<h4>Designing State : Minimizing you state / State in parent ( downward data flow) </h4>
+    <pre><code class="language-Javascript">
+    </code></pre>
+    <pre><code class="language-Javascript">
+    </code></pre>
+    <pre><code class="language-Javascript">
+    </code></pre>
+    <pre><code class="language-Javascript">
+    </code></pre>
+    <pre><code class="language-Javascript">
+    </code></pre>
 
 
 
