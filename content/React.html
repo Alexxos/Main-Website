@@ -66,8 +66,6 @@ class Hello extends Components {
 }
 </code></pre>
 
-
-
     <h3>Css inline Styles</h3>
 
     <pre><code class="language-Javascript">
@@ -93,40 +91,146 @@ class Machine extends Components {
     <pre><code class="language-Javascript">
 class Machine extends Components {
     
-                    
+        render(){            
         return (
 // create .winner and .loser class in css
-< div className={winner ? 'win' : 'lose'}> {winner ? 'Winner!' : 'Loser!'} < div/>
+< div className={winner ? 'win' : 'lose'}>
+ {winner ? 'Winner!' : 'Loser!'} < div/>
         )
     }
 }
 </code></pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <pre><code class="language-Javascript">
-
+    <h4>Import / export Components</h4>
+    <p>export file</p>
+    <pre><code>
+    //export file:
+    export default Helpful;
+    export { func2, func3 };
+    
+    //import file:
+    import Helpful, {fun2, func3} from './Helpful'
 </code></pre>
 
-
+    <h4>Statefull classes (setState outside constructor and render)</h4>
     <pre><code class="language-Javascript">
+import React, { Component } from 'react'
 
+class Rando extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { num: 0 };
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(e) {
+        let rand = Math.floor(Math.random() *10);
+        this.setState({ num: rand });
+        }
+
+    render() {
+        return (
+            < div>
+                < h1>Your Score is: {this.state.num}</>
+                < button 
+                className="btn"
+                onClick={this.handleClick}
+                > click me < button/> 
+            </>
+        )
+    }
+}
+export default Rando
 </code></pre>
 
+    <h4>Alternate syntax (babel) + arrow function to avoid 'this' binding issue</h4>
     <pre><code class="language-Javascript">
+import React, { Component } from 'react'
 
+class Rando extends Component {
+        state = { num: 0 };
+        //this.handleClick = this.handleClick.bind(this)
+
+        handleClick = (e) =>  {
+            let rand = Math.floor(Math.random() *10);
+            this.setState({ num: rand });
+            }
+        
+        render() {
+            return (
+                < div>
+                < div>
+                    < h1>Your Score is: {this.state.num}</>
+
+                    < div>
+                    < h1>Your Score is: {this.state.num}</>
+                < div>
+                    < h1>Your Score is: {this.state.num}</>
+                    < h1>Your Score is: {this.state.num}</>
+                    < button 
+                    className="btn"
+                    onClick={this.handleClick}
+                    > click me < button/> 
+                </>
+            )
+        }
+    }
+export default Rando
 </code></pre>
 
+    <h4>Statefull function using Hooks</h4>
+    <pre><code class="language-Javascript">
+    import React, { useState } from 'react';
+    import './Counter.css'
+    
+    function Counter({ step = 1 }) {
+        //const [value, setValue] = initial state(value)
+        const [count, setCount] = useState(0);
+    
+        return (
+            < div className="Counter">
+                < h2>{count}</>
+                < button 
+                onClick={() => setCount(count + step)}
+        );
+    }
+    export default Counter;
+
+    import React, { useState } from 'react';
+
+function Mood() {
+    const [isHappy, setisHappy] = useState(true);
+    const toggleisHappy = () => setisHappy(!isHappy);
+    const styles = { backgroundColor: isHappy ? 'green' : 'red' };
+
+    return (
+        < h3 
+        onClick={toggleisHappy} 
+        style={styles}
+        className="Mood"
+        >
+            {isHappy ? ':)' : ':('}
+    );
+}
+export default Mood;
+</code></pre>
+
+<h4>State as props</h4>
+<pre><code class="language-Javascript">
+Class CounterParent extends Component {
+    constructor(props){
+    super(props)
+    this.state = {count: 5}
+    }
+    render() {
+        return (
+    < div> 
+    < CounterChild count={this.state.count} />
+    < div>
+        )
+    }
+}
+</code></pre>
 
     <pre><code class="language-Javascript">
 
