@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/Dom.css">
     <title>React2</title>
 </head>
 
 <body>
-    <h4>Passing Methods to Child Components</h4>
+    <h3>Passing Methods to Child Components</h3>
     <p>The idea: Children arent stateful but can tell parents to change state</p>
     <ul>
         <li>a parent component defines a function</li>
@@ -20,7 +20,7 @@
         <li>the parent component is re-rendered along with its children</li>
     </ul>
 
-<pre><code>
+<pre><code class="language-Javascript">
 import React, { Component } from "react";
 import BetterNumberItem from "./BetterNumberItem";
 
@@ -54,7 +54,7 @@ export default BetterNumberList;
 </code></pre>
 
 <p>Children component</p>
-<pre><code>
+<pre><code class="language-Javascript">
 import React, { Component } from "react";
 
 class BetterNumberItem extends Component {
@@ -74,18 +74,159 @@ class BetterNumberItem extends Component {
       </li> );}}
 export default BetterNumberItem;
 </code></pre>
-<h4>Where to bind:</h4>
+<h3>Where to bind:</h3>
 <ul>
     <li>The higher the better</li>
     <li>if you need a parameter, pass it down to the child as a prop, then bind in parent and child</li>
     <li>avoid inline arrow functions / binding if possible</li>
-</ul>
+    <li>Naming conventions parent-action / child-handleAction</li>
 
-<li>Naming conventions parent-action / child-handleAction</li>
+</ul>
+<h3>Keys:</h3>
 <li>Use index while looping to get a key number</li>
 <li>use library like shortid / uuid</li>
 
-<h4>Forms</h4>
+<h3>Forms (with controlled components)</h3>
+<p>This technique is called controlled components. It's convenient to have a JS function that:</p>
+<ul>
+  <li>handles the submission of the form and</li>
+  <li>has access to the data the user entered</li> 
+</ul>
+<p>We make React state be the single source of "truth". React controls: </p>
+<ul>
+  <li>what is shown (the value of the component</li>
+  <li>What happens the user types (this get kept in state</li>
+</ul>
+
+<pre><code class="language-Javascript">
+class NameForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {fullName: ''};
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleSubmit(evt) {
+    // do something with the form data
+  }
+
+  handleSubmit(evt) {
+    // runs on every keystroke event
+  }
+
+  render(){
+    return (
+      <\form onsubmit={this.handleSubmit}>
+        <\label for="fullname">Full Name:</>
+        <\input name="fullname" value={this.state.fullName} onChange={this.handleChange}>
+        <\button>Add!</>
+      </>
+    )
+
+  }
+}
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+  
+</code></pre>
+
+<pre><code class="language-Javascript">
+
+
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <a href="../index.html" class="gradient"> Home </a>
