@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <title>Router</title>
+</head>
+
+<body>
+    <h1>Router</h1>
+    <h2>client-side routing vs server-side</h2>
+    <p>Traditional routing is server side routing: clicking a < a> link cause browser to request and replace the entire
+            DOM.</p>
+    <H3>Faking client side request:</H3>
+    <li>no urls</li>
+    <li>no backward/forward</li>
+    <li>no bookmarks</li>
+    <pre><code class="language-Javascript">
+class App extends Component {
+    constructor (props) {
+        super(props);
+        this.state = { page: 'about'};
+    }
+    changePage(newPage){
+        this.setState({ page: newPage})
+    }
+    renderPage(){
+        if(this.state.page === 'about') return <About />
+        else if(this.state.page === 'dog') return <Dog />
+        else if(this.state.page === 'contact') return <Contact />
+    }
+    render(){
+        return (
+            < div className='App'>
+            < nav>
+                < a onClick={() => this.changePage('about')}>About </>
+                < a onClick={() => this.changePage('dog')}>dog </>
+                < a onClick={() => this.changePage('contact')}>contact</>
+            </>
+            {this.renderPage()}  ); } }
+</code></pre>
+
+<h2>implementing basic client-side routing with React Router</h2>
+
+<li>Client-side routing handles mapping between url bar
+and the content via the browser rather than server. </li>
+<li>Site that use exclisively use client-side routing are single-page applications</li>
+<li>We use Javascript to manipulate the URL bar with a Web API called History</li>
+
+<h3>Install react Router in console with <strong>$ npm i react-router-dom</strong></h3>
+ <p>Then inside <strong>index.js</strong> wrap your < App /> with a <strong>BrowserRouter.</strong> </p>   
+<pre><code class="language-Javascript">
+import {BrowserRouter} from 'react-router-dom'
+
+ReactDOM.render(
+    < BrowserRouter>
+    < App />
+    < /BrowserRouter>,
+    document.getElementById('root')
+);
+</code></pre>
+<h3>Then import and use {Route} in App to link /dog to Dog component:</h3>
+<pre><code class="language-Javascript">
+import React, { Component } from 'react';
+import {Route} from 'react-router-dom'
+import Dog from './Dog';
+import './App.css';
+
+class App extends Component {
+  
+  render(){
+    return (
+      < div className="App">
+        < Route path="/dog" component={Dog} />
+      < /div> ); } }
+
+export default App;
+</code></pre>
+
+<h3>Wrap Routes with < Switch> to only display one route at a time and add 
+'exact' to only display exact path </p>
+<pre><code class="language-Javascript">
+< Switch>
+    < Route exact path='/' component={About} />
+    < Route exact path='/dog' component={Dog} />
+    < Route exact path='/contact' component={Contact} />
+< /Switch>
+</code></pre>
+<h3>Add < Link to=""> as a replacement to < a href=""></h3>
+<p>Link do not issue a GET request, JS intercept and does client-side routing</p>
+<pre><code class="language-Javascript">
+import { Route, Switch, Link } from 'react-router-dom';
+..
+< nav className="App-nav">
+    < Link to="/dog">Dog < Link/>
+    < Link to="/contact">Contact < Link/>
+    < Link to="/">About< Link/>
+  < /nav>
+</code></pre>
+<h3>NavLink Component: add active Css class </h3>
+use activeClassName="" to set active css class. Also add 'exact'.
+<pre><code class="language-Javascript">
+import { Route, Switch, NavLink } from 'react-router-dom';
+
+< nav className="App-nav">
+    < NavLink  exact activeClassName="active-link" to="/dog">Dog < /NavLink>
+    < NavLink  exact activeClassName="active-link" to="/contact">Contact < /NavLink>
+    < NavLink  exact activeClassName="active-link" to="/">About< /NavLink>
+  < /nav>
+</code></pre>
+
+<h3>You can replace 'component' (full lifecyle) with 'render'(just re-render)</h3>
+
+<pre><code class="language-Javascript">
+< Route exact path='/dog/c' component={() => < Dog name='Muffins' />} />
+/* Render will re-use the existing dog component */
+< Route exact path='/dog/r' render={() => < Dog name='Biscuits' />} />
+</code></pre>
+<pre><code class="language-Javascript">
+
+    <a href="../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
