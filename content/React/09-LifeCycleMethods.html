@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <title>React3</title>
+</head>
+
+<body>
+    <h1>React lifecycle Methods</h1>
+    <img src="../../medias/React/lifeCyleMathods.png" style="height: 100vh;">
+
+    <h2>componentDidMount() </h2>
+    <p>Everytime you are fetching data you do it here. setState in constructor is big NoNo:</p>
+    <ul>
+        <li>this method runs after the coponent is mounted</li>
+        <li>"Mouting" is the first time the coponent is rendered to DOM</li>
+        <li>This is a good place to load any Just data via AJAX or set up subscriptions/timers</li>
+        <li>Calling setState() here will trigger re-render, so be cautious</li>
+    </ul>
+
+    <h3>basic worflow to loading data in componentDidMount() with Axios:</h3>
+    <pre><code class="language-Javascript">
+class ZenQuote extends Component {
+    constructor(props){
+        super(props);
+        this.state = {quote: ""} }
+        
+    componentDidMount(){
+        //load data
+        axios.get('https://api.github.com/zen').then(response => {
+            //set state with that data
+            this.setState({quote: response.data})   })  }
+    render() {
+    < div> {this.state.quote} < /div>  }}
+     export default ZenQuote
+    </code></pre>
+
+<h3>Adding a loading symbol and 3sec timer</h3>
+<pre><code class="language-Javascript">
+class ZenQuote extends Component {
+    constructor(props){
+        super(props);
+        this.state = {quote: "", isLoaded: false } }
+
+    componentDidMount(){
+        axios.get('https://api.github.com/zen').then(response => {
+            setTimeout(
+                function(){
+                    this.setState({quote: response.data, isLoaded: true})  }, 3000)  })}
+    render() {
+        return (
+    < div> {this.state.isLoaded ? 
+        ( < p> {this.state.quote}< /p> ) :
+        ( < div className="loader" /> ) }
+    < /div>  )}}
+export default ZenQuote
+</code></pre>
+<h3>Using Async functions (cleaner)</h3>
+<pre><code class="language-Javascript">
+import React, { Component } from "react";
+import axios from "axios";
+
+class GithubUserInfo extends Component {
+    constructor(props) {
+    super(props);
+    this.state = {
+        user: {} };}
+
+    //async version
+    async componentDidMount() {
+    const url = `https://api.github.com/users/${this.props.username}`;
+    let response = await axios.get(url);
+    let user = response.data;
+    this.setState({ user });
+    }
+
+    //     componentDidMount(){
+    //         axios.get('https://api.github.com/users/elie')
+    //          .then(response => {
+    //              let user = response.data
+    //              this.setState({ user });
+    //          });
+    //    }
+
+    render() {
+    return (
+        < div>
+        < h1>{this.state.user.name}< /h1>
+        < p>{this.state.user.bio}< /p>
+        < img src={this.state.user.avatar_url} />
+        < /div> );}}
+export default GithubUserInfo;
+</code></pre>
+    
+<h2>componentDidUpdate()</h2>
+<p>This method is called after every render occurs.</p>   
+<p> This is a suitable to implement any side effect operations:</p>
+<ul>
+    <li>syncing up with <strong>localStorage</strong></li>
+    <li>auto-saving</li>
+    <li>updating the DOM for uncontrolled components</li>
+</ul>
+<p></p><p>You can do a comparison between the previous and current props and state:</p>    
+<pre><code class="language-Javascript">
+    componentDidUpdate(prevProps, prevState){
+        //you can call setState here as well if you need }
+</code></pre>
+<h2>componentWillUnmount()</h2>
+<p>When component is unmounted or destroyed, this will be called. This is where you do cleanup like:</p>
+<ul>
+    <li>invalidating timers</li>
+    <li>canceling network request</li>
+    <li>removing event handlers directly put on DOM</li>
+    <li>Cleaning up subscriptions</li>
+</ul>
+<p>Exemple, clear the timer wheneever the clock is removed:</p>
+<pre><code class="language-Javascript">
+componentWillUnmount(){
+    clearInterval(this.timerID)
+}
+</code></pre>
+
+    <a href="../index.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
