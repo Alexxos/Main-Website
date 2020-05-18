@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <title>Router Paterns</title>
+</head>
+
+<body>
+
+    <h1>Router Paterns</h1>
+    <h2>Anti-patern:</h2>
+    <pre><code class="language-Javascript">
+import React from 'react';
+import Food from './Food'
+import { Route } from 'react-router-dom'
+import './App.css';
+
+function App() {
+  return (
+    < div className="App">
+      < Route path="/food/kale" render={() => < Food name="kale" />} />
+      < Route path="/food/chicken" render={() => < Food name="chicken" />} />
+      < Route path="/food/fish" render={() => < Food name="fish" />} />
+
+    < /div>
+   )
+;}
+
+export default App;
+</code></pre>
+
+<h2>A better pattern</h2>
+<pre><code class="language-Javascript">
+import React from 'react';
+import Food from './Food'
+import { Route } from 'react-router-dom'
+import './App.css';
+
+function App() {
+  return (
+    < div className="App">
+      < Route exact path="/food/:name" render={(routeProps) => 
+      < Food name={routeProps.match.params.name}/>} />
+    < /div> ); }
+
+export default App;
+</code></pre>
+
+<h2>An even better pattern using deconstructuring ...</h2>
+<pre><code class="language-Javascript">
+class App extends Component {
+    render() {
+        return (
+        < div className='App'>
+        
+            < Route
+                exact
+                path='/food/:name'
+                render={routeProps => < Food {...routeProps} />}
+            < div/> );} }
+</code></pre>
+
+<h3>in the other component:</h3>
+<pre><code class="language-Javascript">
+const name = this.props.match.params.name;
+const url = `https://source.unsplash.com/1600x900/?${name}`;
+return (
+    < div className='Food'>
+        < h1>I love to eat {name}< /h1>
+        < img src={url} alt='{name}'/>
+    < div/> );}}
+</code></pre>
+
+    <h3>Easier: if you use a component instead of render, the props is automatically added but no props can be added.</h3>
+<pre><code class="language-Javascript">
+< Route exact path='/food/:name' component={Food} />
+</code></pre>
+
+<h3> For many props, use render :></h3>
+   <pre><code class="language-Javascript">
+< Route 
+    exact 
+    path='/food/:name'
+    render={routeProps => < Food authenticated={true}{...routeProps} />}
+    />
+</code></pre>
+    <h4 style="text-transform: lowercase; font-weight: 200;">
+THIS VERSION USING COMPONENT WORKS AND IS SIMPLER BUT IT WILL NOT WORK IF YOU NEED TO PASS ADDITIONAL PROPS :
+ <span style="display: block;">< Route exact path='/food/:name' scomponent={Food} /></span>
+THIS VERSION USING RENDER IS LESS CLEAN BUT MORE EXPLICIT AND YOU CAN PASS IN YOUR OWN ADDITIONAL PROPS :
+    </h4>
+    <h3>Multiple Route params</h3>
+    <pre><code class="language-Javascript">
+< Route
+exact
+path='/food/:foodName/drink/:drinkName'
+render={routeProps => <Meal {...routeProps} />}
+/>
+</code></pre>
+
+<pre><code class="language-Javascript">
+ ...
+render() {
+const foodName = this.props.match.params.foodName;
+const drinkName = this.props.match.params.drinkName;
+const foodUrl = `https://source.unsplash.com/1600x900/?${foodName}`;
+const drinkUrl = `https://source.unsplash.com/1600x900/?${drinkName}`;
+
+return (
+    < div>
+        < h1>
+            This is a Meal {foodName}+{drinkName}
+        < /h1>
+        < img src={foodUrl} alt='' />
+        < img src={drinkUrl} alt='' />
+    < /div>
+</code></pre>
+
+<h3>Including a 404 :</h3>
+<p>Need a Switch andJust finish the Routes with a Route without path:</p>
+<pre><code class="language-Javascript">
+class Routes extends Component {
+    render(){
+        return(
+        < Switch>
+        < Route exact path="/about" render={() => < About/>} />
+        < Route exact path="/contact" render={(routeProps) => < Contact {...routeProps}/>} />
+        < Route exact path="/blog/slug" render={(routeProps) => < BlogPost {...routeProps}/>} />
+        < Route exact path="/blog" render={() => < BlogHome/>} />
+        < Route exact path="/" render={() => < Home/>} />
+        < Route render={() => < NotFound/>} />
+        < /Switch> )}}
+</code></pre>
+<h3>Create a search form with Link to redirect</h3>
+
+<pre><code>
+import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
+
+class FoodSearch extends Component {
+    constructor (props){
+        super(props);
+        this.state = {query: ""}
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(evt){
+        this.setState({query: evt.target.value})
+    }
+    render() {
+        return (
+            < div>
+                < h1>Search for a food< /h1>
+                < input type="text" placeholder="Search for food" value={this.state.query} onChange={this.handleChange}/>
+                < Link to={`/food/${this.state.query}`}> Go!< /Link>
+            < /div> ) } }
+export default FoodSearch
+</code></pre>
+<h3>Client-Side Redirect:</h3>
+<ul>
+    <li>With react Router we can mimic the behavior of server-side redirects</li>
+    <li>Useful after certain user actions(e.g. submitting a form)</li>
+    <li>Redirect after 404</li>
+</ul>
+<h4>With the < Redirect> component:</h4>
+
+<pre><code>
+    if(blabla) ?  < Redirect to='/'/> : something else
+</code></pre>
+<h4>USING this.props.history.push('/')</h4>
+
+<pre><code>
+handleClick(){
+    //Do something
+    alert('button clicked, functions triggered!');
+    //redirect somewhere else
+    this.props.history.push(`/food/${this.state.query}`)
+}
+
+//You need history in the props. So you either need 
+component={< Component/>} 
+//or destructuring in 
+render={routeProps => < Component {...routeProps}/>}
+</code></pre>
+
+<h3>{withRouter} allow to wrap component into the router</h3>
+<p>Allow to use this.props.history.push() to component outside the router scope (switch)</p>
+<pre><code>
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+  handleLogin() {
+    alert("LOGGED YOU IN!");
+    this.props.history.push("/food/salmon");
+  }
+
+  render() {
+    return (
+        < div className='Navbar'>
+            < button onClick={this.handleLogin}>Log In< /button>
+            < button onClick={this.props.history.goBack}>go back< /button>
+        < /div> ); } }
+export default withRouter(Navbar);
+</code></pre>
+
+<h3>implementing a back button</h3>
+
+<pre><code>
+< button onClick={this.props.history.goBack}>< /button>
+</code></pre>
+
+    <a href="../React.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

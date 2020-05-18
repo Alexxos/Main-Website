@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <title>Props & State</title>
+</head>
+<h1>Props and State:</h1>
+<h3>Basic props destructuring : </h3>
+<pre><code class="language-Javascript">
+class Machine extends Components {
+    render() {
+        const {s1, s2, s3} = this.props;
+        return (
+            < div>
+            < p>{s1}{s2}{s3}< /p>
+            < div/> ) } }
+</code></pre>
+<h3>Default props</h3>
+<pre><code class="language-Javascript">
+class Hello extends Components {
+    static defaultProps = {
+        from: "Joel", };
+render() {
+        return < p> Hi {this.props.to} from {this.props.from}"< p/> } }
+</code></pre>
+<h3>Statefull classes (setState outside constructor and render)</h3>
+<pre><code class="language-Javascript">
+import React, { Component } from 'react'
+
+class Rando extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { num: 0 };
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick(e) {
+        let rand = Math.floor(Math.random() *10);
+        this.setState({ num: rand });
+        }
+
+    render() {
+        return (
+            < div>
+                < h1>Your Score is: {this.state.num}</>
+                < button 
+                className="btn"
+                onClick={this.handleClick}
+                > click me < button/> 
+            < div/> ) } }
+export default Rando
+</code></pre>
+
+    <h3>Alternate syntax (babel) + arrow function to avoid 'this' binding issue</h3>
+    <pre><code class="language-Javascript">
+import React, { Component } from 'react'
+
+class Rando extends Component {
+        state = { num: 0 };
+        //this.handleClick = this.handleClick.bind(this)
+
+        handleClick = (e) =>  {
+            let rand = Math.floor(Math.random() *10);
+            this.setState({ num: rand });
+            }
+        
+        render() {
+            return (
+                < div>
+                < div>
+                    < h1>Your Score is: {this.state.num}</>
+
+                    < div>
+                    < h1>Your Score is: {this.state.num}</>
+                < div>
+                    < h1>Your Score is: {this.state.num}</>
+                    < h1>Your Score is: {this.state.num}</>
+                    < button 
+                    className="btn"
+                    onClick={this.handleClick}
+                    > click me < button/> 
+                < div/> ) } }
+export default Rando
+</code></pre>
+
+    <h3>Statefull function using Hooks</h3>
+<pre><code class="language-Javascript">
+import React, { useState } from 'react';
+import './Counter.css'
+
+function Counter({ step = 1 }) {
+    //const [value, setValue] = initial state(value)
+    const [count, setCount] = useState(0);
+
+    return (
+        < div className="Counter">
+            < h2>{count}</>
+            < button 
+            onClick={() => setCount(count + step)} );}
+export default Counter;
+//------------------------------------------------------
+import React, { useState } from 'react';
+
+function Mood() {
+    const [isHappy, setisHappy] = useState(true);
+    const toggleisHappy = () => setisHappy(!isHappy);
+    const styles = { backgroundColor: isHappy ? 'green' : 'red' };
+
+    return (
+        < h3 
+        onClick={toggleisHappy} 
+        style={styles}
+        className="Mood"
+        />
+        {isHappy ? '🐵' : '🦍'} );}
+
+export default Mood;
+</code></pre>
+
+<h3>State as props</h3>
+<pre><code class="language-Javascript">
+Class CounterParent extends Component {
+constructor(props){
+super(props)
+this.state = {count: 5}
+}
+render() {
+    return (
+< div> 
+< CounterChild count={this.state.count} />
+< div> ) } }
+</code></pre>
+
+<h3>State & default props</h3>
+<pre><code class="language-Javascript">
+import React, { Component } from 'react'
+import Die from './Die'
+import './RollDice.css'
+        
+class RollDice extends Component {  
+static defaultProps = { 
+    sides: ["one", 'two', 'three', 'four', 'five', 'six'] }
+
+constructor(props) {
+    super(props);
+    this.state = ({
+        die1: 'one', 
+        die2: 'six', 
+        rolling: false
+    })
+    this.roll = this.roll.bind(this); }
+
+roll() {
+const newDie1 = this.props.sides
+[Math.floor(Math.random() * this.props.sides.length)];
+        
+const newDie2 = this.props.sides
+[Math.floor(Math.random() * this.props.sides.length)];
+            
+this.setState({ die1: newDie1, die2: newDie2, rolling: true })
+    setTimeout(() => {
+            this.setState({ rolling: false });
+                }, 1000); }
+
+render() {
+    return (
+        < div className="RollDice">
+            < Die face={this.state.die1} rolling={this.state.rolling}/>
+            < Die face={this.state.die2} rolling={this.state.rolling}/>
+            < br />
+            < button onClick={this.roll} disabled={this.state.rolling}>
+                        {this.state.rolling ? 'Rolling...' : 'click me'}
+            </>
+            < h1>{this.state.face} </>
+        < div/> ) } }
+
+export default RollDice
+</code></pre>
+
+<h3>setState Callback Form: this.setState(callback)</h3>
+<pre><code class="language-Javascript">
+tripleKill(){
+    this.setState(st => {return {score: st.score +1}})
+    this.setState(st => {return {score: st.score +1}})
+    this.setState(st => {return {score: st.score +1}}) }
+</code></pre>
+
+<h3>Abstracting State updates with functional setState</h3>
+<pre><code class="language-Javascript">
+//elsewhere in the code:
+function incrementCounter(prevState){
+    return { count: prevState.count + 1} }
+//somewhere in the Component
+this.setState(incrementCounter)
+
+incrementScore(curState) {
+    return { score: curState.score + 1} }
+
+tripleKill() {
+    this.setState(incrementScore)
+    this.setState(incrementScore)
+    this.setState(incrementScore) }
+</code></pre>
+
+<h3>Immutable state: the idea to create a new copy of the data structure (here with the spread operator)</h3>
+<pre><code class="language-Javascript">
+completeTodo(id) {
+//Array.prototype.map returns a new Array
+
+const newTodos = this.state.todos.map(todo => {
+    if (todo.id === id) {
+    //make a copy of the todo object wth done -> true
+    return {...todo, done: true}
+    }
+    return todo; //old todos can pass through}) 
+    
+    this.setState({todos: newTodos })} //setState to the new array 
+    </code></pre>
+
+<h3>Another exemple of mutating state with copy (...spread operator)</h3>
+
+<pre><code class="language-Javascript">
+let idx = Math.floor(Math.random() *this.props.options.lenght);
+let newIcon = this.props.options[idx];
+this.setState({ icons: [...this.state.icons, newIcon]})
+</code></pre>
+
+<h3>Designing State : Minimizing you state / State in parent ( downward data flow) </h3>
+
+<a href="/content/React.html" class="gradient"> Home </a>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

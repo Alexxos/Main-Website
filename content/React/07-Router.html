@@ -80,8 +80,8 @@ class App extends Component {
 export default App;
 </code></pre>
 
-<h3>Wrap Routes with < Switch> to only display one route at a time and add 
-'exact' to only display exact path </p>
+<h3>Wrap Routes with < Switch> </h3> <p>To only display one route at a time and add 
+    'exact' to only display exact path:</p> 
 <pre><code class="language-Javascript">
 < Switch>
     < Route exact path='/' component={About} />
@@ -119,9 +119,8 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 /* Render will re-use the existing dog component */
 < Route exact path='/dog/r' render={() => < Dog name='Biscuits' />} />
 </code></pre>
-<pre><code class="language-Javascript">
 
-    <a href="../index.html" class="gradient"> Home </a>
+<a href="/content/React.html" class="gradient"> Home </a>
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>

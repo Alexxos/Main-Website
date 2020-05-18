@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <title>Trics & concepts</title>
+</head>
+
+<body>
+    <h1>Basic tricks & React concepts:</h1>
+    <h3>Loops in JSX with .map()</h3>
+<pre><code class="language-Javascript">
+class Message extends Components {
+    render() {
+        const msgs = [
+        {id:1, text: 'Greetings!'},
+        {id:2, text: 'Goodbye!'},
+        ]
+        return (
+            < ul>
+        {msgs.map(m => < li >{m.text}< li /> )}
+            < /ul> ) } }
+</code></pre>
+<pre><code class="language-Javascript">
+class Friends extends Components {
+    render() {
+        const {name, hobbies} = this.props;
+        return (
+            < ul>
+    {hobbies.map(h => < li >{h}< li /> )}
+// this loop each hobbies
+            < /ul> ) } }
+</code></pre>
+
+<h3>Css inline Styles (Object / camelCase)</h3>
+
+<pre><code class="language-Javascript">
+class Machine extends Components {
+    render() {
+        const colors = { 
+            fontSize: '50px',
+            backgroundColor: 'purle',
+            border: '2px solid, blue'
+                    };
+        return (
+            < div style={colors}> LoremIpsum < div/> ) } }
+</code></pre>
+
+<h3>Switch css .class</h3>
+
+<pre><code class="language-Javascript">
+class Machine extends Components {
+    render(){            
+        return (
+// create .winner and .loser class in css
+< div className={winner ? 'win' : 'lose'}>
+ {winner ? 'Winner!' : 'Loser!'} < div/> ) } }
+</code></pre>
+
+<h3>Import / export Components</h3>
+<pre><code class="language-Javascript">
+//export file :
+    export default Helpful;
+    export { func2, func3 };
+    
+//import file:
+    import Helpful, {fun2, func3} from './Helpful'
+</code></pre>
+
+<h3>Helpers.js : make functions available everywhere</h3>
+<pre><code class="language-Javascript">
+function choice(arr){
+    let randomIndex = Math.floor(Math.random() * arr.length)
+    return arr[randomIndex] }
+export { choice };
+
+// then use :
+import { choice } from './Helpers.js'
+</code></pre>
+
+<h3>Create and array and loop to create multiple elements with Array.from and .map()</h3>
+<pre><code class="language-Javascript">
+render(){
+    const boxes = Array.from({length: this.props.numBoxes}).map(
+        () => ( 
+        < Box colors={this.props.colors}/>
+    ));
+        return < div className="BoxContainer">{boxes}</> }
+    </code></pre>
+
+    <a href="/content/React.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

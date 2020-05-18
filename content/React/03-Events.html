@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <title>React Events</title>
+</head>
+
+<body>
+  <h1>React Events</h1>
+  <h4>Different kinds of react events</h4>
+    <p>Mouse events: onClick, onMouseOver,</p> 
+    <p>Form events: onSubmit,etc ,</p>
+    <p>keyboard events: onKeydown, onKeyPress, </p>
+    <a href="https://reactjs.org/docs/events.html">Full list of events</a>
+<pre><code class="language-Javascript">
+class AnnoyingForm extends Component {
+    handleKeyUp(evt){
+        if(evt.keyCode === 56){
+            alert('5*****')
+        } else {
+            alert('no *!')
+        }
+    }
+    render() {
+        return (
+        < div>
+            < h3>Try typing in Here:</>
+            < textarea onKeyUp={this.handleKeyUp}></>
+        < /div> ) } }
+
+export default AnnoyingForm;
+</code></pre>
+
+<h4>Method binding</h4>
+<ol>
+    <li>use bind inline (warning: .bind(this) create a new function each time -> might create performance issues</li>
+<pre><code>
+< div class="WiseSquare" onMouseEnter={this.dispenseWisdom.bind(this)}></>
+    </code></pre>
+    <li>use arrow function. Also, new function created on each render</li>
+    <pre><code>
+< div class="WiseSquare" onMouseEnter={() => this.dispenseWisdom()</div>}></>
+    </code></pre>
+    <li>Method bind the constructor</li>
+    <pre><code>
+constructor(props){
+    super(props);
+    this.dispenseWisdom = this.dispenseWisdom.bind(this)
+    </code></pre>
+    <li>use arrow function in the method:</li>
+    <pre><code>
+dispenseWisdom = () => {
+    console.log('this is', this)
+        }
+< div class="WiseSquare" onMouseEnter={this.dispenseWisdom}
+    </code></pre>
+</ol>
+
+<h4>Binding with arguments</h4>
+<pre><code class="language-Javascript">
+render(){
+< div> style={{backgroundColor: this.state.color}}>
+{this.props.colors.map(c =>{
+    const colorObj = { backgroundColor:c };
+return (
+    < button style={colorObj} onClick={this.changeColor.bind(this, c)}>
+   //or:
+    < button style={colorObj} onClick={()=>this.changeColor(c)}>
+
+    >click me< button/> ) })}< /div> 
+    </code></pre>
+
+
+    <h2>Passing Methods to Child Components</h2>
+    <p>The idea: Children arent stateful but can tell parents to change state</p>
+    <ul>
+        <li>a parent component defines a function</li>
+        <li>the function is passed as prop to a child component</li>
+        <li>the child component invokes the prop</li>
+        <li>the parent function is called, usually setting a new state</li>
+        <li>the parent component is re-rendered along with its children</li>
+    </ul>
+
+<pre><code class="language-Javascript">
+import React, { Component } from "react";
+import BetterNumberItem from "./BetterNumberItem";
+
+class BetterNumberList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { nums: [1, 2, 3, 4, 5] };
+    this.remove = this.remove.bind(this);
+  }
+
+remove(num) {
+    console.log("REMOVING!");
+    console.log(num);
+    this.setState(st => ({
+      nums: st.nums.filter(n => n !== num)
+    }));
+  }
+
+  render() {
+    // Key must be unique!
+    let nums = this.state.nums.map(n => (
+      <BetterNumberItem key={n} value={n} remove={this.remove} />
+    ));
+    return (
+      < div>
+        < h1>Better Number List</>
+        < ul>{nums}</>
+      </>);}}
+
+export default BetterNumberList;
+</code></pre>
+
+<h3>Children component</h3>
+<pre><code class="language-Javascript">
+import React, { Component } from "react";
+
+class BetterNumberItem extends Component {
+  constructor(props) {
+    super(props);
+    this.handleRemove = this.handleRemove.bind(this);
+  }
+  handleRemove(evt) {
+    console.log("INSIDE HANDLE REMOVE");
+    this.props.remove(this.props.value);
+  }
+  render() {
+    return (
+      < li>
+        {this.props.value}
+        < button onClick={this.handleRemove}>X</>
+      </li> );}}
+      
+export default BetterNumberItem;
+</code></pre>
+<h3>Where to bind:</h3>
+<ul>
+    <li>The higher the better</li>
+    <li>if you need a parameter, pass it down to the child as a prop, then bind in parent and child</li>
+    <li>avoid inline arrow functions / binding if possible</li>
+    <li>Naming conventions parent-action / child-handleAction</li>
+
+</ul>
+<h3>Keys:</h3>
+<li>Use index while looping to get a key number</li>
+<li>use library like shortid / uuid</li>
+
+
+
+<a href="/content/React.html" class="gradient"> Home </a>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

@@ -5,88 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/styles/default.min.css">
-    <link rel="stylesheet" href="../styles/Dom.css">
-    <title>React2</title>
+    <link rel="stylesheet" href="../../styles/Dom.css">
+    <title>React Forms</title>
 </head>
 
 <body>
-    <h2>Passing Methods to Child Components</h2>
-    <p>The idea: Children arent stateful but can tell parents to change state</p>
-    <ul>
-        <li>a parent component defines a function</li>
-        <li>the function is passed as prop to a child component</li>
-        <li>the child component invokes the prop</li>
-        <li>the parent function is called, usually setting a new state</li>
-        <li>the parent component is re-rendered along with its children</li>
-    </ul>
+    
 
-<pre><code class="language-Javascript">
-import React, { Component } from "react";
-import BetterNumberItem from "./BetterNumberItem";
-
-class BetterNumberList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { nums: [1, 2, 3, 4, 5] };
-    this.remove = this.remove.bind(this);
-  }
-
-remove(num) {
-    console.log("REMOVING!");
-    console.log(num);
-    this.setState(st => ({
-      nums: st.nums.filter(n => n !== num)
-    }));
-  }
-
-  render() {
-    // Key must be unique!
-    let nums = this.state.nums.map(n => (
-      <BetterNumberItem key={n} value={n} remove={this.remove} />
-    ));
-    return (
-      < div>
-        < h1>Better Number List</>
-        < ul>{nums}</>
-      </>);}}
-
-export default BetterNumberList;
-</code></pre>
-
-<h3>Children component</h3>
-<pre><code class="language-Javascript">
-import React, { Component } from "react";
-
-class BetterNumberItem extends Component {
-  constructor(props) {
-    super(props);
-    this.handleRemove = this.handleRemove.bind(this);
-  }
-  handleRemove(evt) {
-    console.log("INSIDE HANDLE REMOVE");
-    this.props.remove(this.props.value);
-  }
-  render() {
-    return (
-      < li>
-        {this.props.value}
-        < button onClick={this.handleRemove}>X</>
-      </li> );}}
-export default BetterNumberItem;
-</code></pre>
-<h3>Where to bind:</h3>
-<ul>
-    <li>The higher the better</li>
-    <li>if you need a parameter, pass it down to the child as a prop, then bind in parent and child</li>
-    <li>avoid inline arrow functions / binding if possible</li>
-    <li>Naming conventions parent-action / child-handleAction</li>
-
-</ul>
-<h3>Keys:</h3>
-<li>Use index while looping to get a key number</li>
-<li>use library like shortid / uuid</li>
-
-<h2>Forms (with controlled components)</h2>
+<h1>Forms (with controlled components)</h1>
 <p>This technique is called controlled components. It's convenient to have a JS function that:</p>
 <ul>
   <li>handles the submission of the form and</li>
@@ -248,7 +174,7 @@ render() {
 { name: "Bread", qty: "2 loaves", id: uuid() }
 </code></pre>
 
-    <a href="../index.html" class="gradient"> Home </a>
+<a href="/content/React.html" class="gradient"> Home </a>
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.0.1/build/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>
